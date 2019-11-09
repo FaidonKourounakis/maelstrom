@@ -1,0 +1,37 @@
+// @mixin respond($size) {
+//     @if $size == xl {
+//         @media (min-width: 112.5em) {
+//             @content
+//         } 
+//     }
+//     @if $size == xs {
+//         @media (max-width: 37.5em) {
+//             @content
+//         } 
+//     }
+// }
+@mixin respond( $breakpoint ) {
+    @if $breakpoint == xs { 
+        @media (max-width: 37.5rem) { @content };   
+    }
+    @if $breakpoint == sm { 
+        @media (min-width: 37.5rem) and (max-width: 56.25rem) { @content };   
+    }
+    @if $breakpoint == md { 
+        @media (min-width: 56.25rem) and (max-width: 75rem) { @content };   
+    }
+    @if $breakpoint == lg { 
+        @media (min-width: 75rem) and (max-width: 112.5rem) { @content };   
+    }
+    @if $breakpoint == xl { 
+        @media (min-width: 112.5rem) { @content };   
+    }
+}
+
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}

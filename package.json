@@ -1,27 +1,35 @@
 {
-  "name": "maelstrom",
+  "name": "Maelstrom",
   "version": "1.0.0",
-  "description": "band website",
+  "description": "",
   "main": "index.js",
-  "scripts": {
-    "compile:sass": "node-sass sass/main.scss ./css/style.css -w"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FaidonKourounakis/maelstrom.git"
-  },
-  "keywords": [
-    "band",
-    "static",
-    "website"
-  ],
-  "author": "Faidon Kourounakis",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/FaidonKourounakis/maelstrom/issues"
-  },
-  "homepage": "https://github.com/FaidonKourounakis/maelstrom#readme",
+  "dependencies": {},
   "devDependencies": {
-    "node-sass": "^4.13.0"
-  }
+    "@babel/core": "^7.7.2",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.6.0",
+    "file-loader": "^4.2.0",
+    "html": "^1.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "loader": "^2.1.1",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.dev.js --open",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

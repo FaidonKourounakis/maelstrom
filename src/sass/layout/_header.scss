@@ -1,0 +1,76 @@
+.header {
+    // position
+    position: fixed;
+    z-index: $z-header;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 6.8rem;
+    vertical-align: middle;
+
+    padding: 0;
+    @include respond(md) { padding: 0 $padding-horizontal-md; }
+    @include respond(lg) { padding: 0 $padding-horizontal-lg; }
+
+
+    background-color: $color-black;
+
+    &__title {
+        //functionality
+        display: inline-block;
+
+        //text styling
+        color: $color-white;
+        text-decoration: none;
+        text-transform: uppercase; 
+        font-weight: 300;
+        font-size: 4rem;
+        line-height: 1.8;
+
+        // //padding
+        // padding-left: 2rem;
+    }
+
+    &__burger {
+        width: 4rem;
+        position: relative;
+        height: 100%;
+        margin: 0 2rem;
+        float: left;
+
+        &--top, &--middle, &--bottom {
+            width: 4rem;
+            height: 2px;
+            border-radius: 1px;
+            background-color: $color-white;
+            position: absolute;
+            transition: all .3s;
+            display: inline-block;
+        }
+        &--top {
+            left:0;
+            top: 30%;
+            &.cross {
+                top: 50%;
+                transform: rotate( 135deg);
+            }
+        }
+        &--middle {
+            left:0;
+            top: 50%;
+            &.cross {
+                top: 50%;
+                opacity: 0;
+                transform: translateX(-300%);
+            }
+        }
+        &--bottom {
+            left:0;
+            top: 70%;
+            &.cross {
+                top: 50%;
+                transform: rotate( -135deg);
+            }
+        }
+    }
+}

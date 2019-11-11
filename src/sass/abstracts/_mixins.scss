@@ -10,20 +10,20 @@
 //         } 
 //     }
 // }
-@mixin respond( $breakpoint ) {
-    @if $breakpoint == xs { 
+@mixin respond( $a, $b: false, $c: false, $d: false ) {
+    @if ($a == xs) or ($b == xs) or($c == xs) or($d == xs) { 
         @media (max-width: 37.5rem) { @content };   
     }
-    @if $breakpoint == sm { 
+    @if ($a == sm) or ($b == sm) or($c == sm) or($d == sm) { 
         @media (min-width: 37.5rem) and (max-width: 56.25rem) { @content };   
     }
-    @if $breakpoint == md { 
-        @media (min-width: 56.25rem) and (max-width: 75rem) { @content };   
+    @if ($a == md) or ($b == md) or($c == md) or($d == md) { 
+        @media (min-width: 56.25rem) and (max-width: 77rem) { @content };   
     }
-    @if $breakpoint == lg { 
-        @media (min-width: 75rem) and (max-width: 112.5rem) { @content };   
+    @if ($a == lg) or ($b == lg) or($c == lg) or($d == lg) { 
+        @media (min-width: 77rem) and (max-width: 112.5rem) { @content };   
     }
-    @if $breakpoint == xl { 
+    @if ($a == xl) or ($b == xl) or($c == xl) or($d == xl) { 
         @media (min-width: 112.5rem) { @content };   
     }
 }

@@ -6,8 +6,11 @@ $color-white: rgb(255, 255, 255);
 
 // z-indexes
 $z-header: 2;
+$z-menu: 4;
 $z-burger: 5;
+$z-link: 100;
+$z-link-bg: 50;
 
 //paddings: 
-$padding-horizontal-md: 10vw;
 $padding-horizontal-lg: 15vw;
+$padding-horizontal-xl: 20vw;

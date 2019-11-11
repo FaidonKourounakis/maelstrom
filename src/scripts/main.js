@@ -3,7 +3,11 @@
 import "../sass/main.scss"
 
 // IMPORT JAVASCRIPT MODULES/ COMPONENTS
-import menu from './menu/menu';
+import header from './header/header';
+
+//testing: 
+import './test'
+
 
 
 

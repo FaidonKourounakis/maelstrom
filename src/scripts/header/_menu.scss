@@ -11,7 +11,7 @@
     
     //animation sliding in down
     transform: translateY(-100%) scaleY(0);
-    transition: transform .5s ease-out;
+    transition: transform .3s ease-out;
     &--show {
         transform: translateY(0) scaleY(1);
     }

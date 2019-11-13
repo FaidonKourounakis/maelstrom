@@ -2,11 +2,8 @@
 import './_header.scss' 
 import './_menu.scss' 
 
-import { state, dom } from '../store'
+import { state, dom } from '../../store'
 import animation from './animation'
-
-import router from '../router/router'
-import routes from '../router/routes'
 
 const toggleMenu = () => {
     state.showMenu = !state.showMenu

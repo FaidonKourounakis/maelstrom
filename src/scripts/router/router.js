@@ -1,34 +1,68 @@
-import { dom, fn } from '../store'
-import routes from './routes'
+import { dom, fn } from '../store' // the store
+import routes from './routes' // import routes
 
 
-const router = url => {
+// the function that inserts a page
+function insert( route ) {
+    if ( route.alive ) {
+        
+        //(if alive) = (if this route has already been used) then just turn the display from 'none' > 'block'
+        document.getElementById( route.component.id ).style.display = 'block'
+
+    } else { //if the component hasn't been used: 
+        route.alive = true
+
+        // insert the component's html into the router-view
+        document.getElementById( 'router-view' ).append( route.component.template )
+
+        // run the component's setup (set up event listeners and stuff)
+        route.component.setup()
+    }
+}
+
+// function that ejects a page from the router-view and doesn't kill it
+function eject( route ) {
+    // just sets the display to none
+    document.getElementById( route.component.id ).style.display = 'none'
+}
+
+
+let oldRoute 
+function router( url ) { // the function that changes the route
 
     if ( routes.find( currRoute => currRoute.url == url ) ) { //checks if the route exist
-        
-        let currentRoute = routes.find( currRoute => currRoute.url == url ) // finds the requested route object
+    
+        let newRoute = routes.find( currRoute => currRoute.url == url ) // finds the requested route object
+
 
         //adds the routes url to the history
         window.history.pushState( 
             {url: url}, //state object in order to be able to retrieve the route
-            currentRoute.name, // the message | idk where this is used but i added it
+            newRoute.name, // the message | idk where this is used but i added it
             url // and finally the url is given
         )
 
         // changes the router view
-        dom.routerView.innerHTML = currentRoute.component
+        if ( oldRoute && oldRoute.name != newRoute.name ) { // if the route is different eject old one and insert new one
+            eject( oldRoute ) 
+            insert( newRoute )
+            oldRoute = newRoute
+        } else if ( oldRoute && oldRoute.name == newRoute.name ) { // if the route remaines the same don't do anything
+            return
+        } else if ( !oldRoute ) {
+            insert( newRoute ) 
+            oldRoute = newRoute
+        }
+
     } else {
         alert( 'Invalid path. Redirected to home page' ) 
         router( '/' )
     }
 }
-export default router
-
 
 // sets up the homepage when first loading website
-window.addEventListener( 'load', e => {
-    router( '/' ) 
-})
+router( '/' )
+
 // changes route when back button is clicked (onpopstate)
 window.addEventListener( 'popstate', e => {
     let path = window.location.pathname
@@ -36,13 +70,15 @@ window.addEventListener( 'popstate', e => {
     router( url ) 
 })
 
-
-let routerLinks = Array.from(
+// sets up router links
+let routerLinks = Array.from(   
     document.querySelectorAll( '[route]' )
 )
-// console.log(routerLinks[0].attributes)
 routerLinks.forEach( el => {
     el.addEventListener( 'click', e => {
         router( el.attributes.route.value )
     } )
 } )
+
+
+export default router

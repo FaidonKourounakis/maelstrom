@@ -30,4 +30,9 @@ export let fn = {
             }
         }
     },
+    elementOfString( str ) {
+        let el = document.createElement( 'div' )
+        el.innerHTML = str
+        return el
+    }
 }

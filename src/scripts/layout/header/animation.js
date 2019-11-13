@@ -1,4 +1,4 @@
-import { state, dom } from '../store'
+import { state, dom } from '../../store'
 
 
 export default {

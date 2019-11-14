@@ -1,10 +1,10 @@
 .row {
     display: block;
-    padding: 2rem;
+    padding: 0 2rem;
     @include respond(lg) {
-        padding: 2rem calc( 2rem + #{$padding-horizontal-lg})
+        padding: 0rem calc( 2rem + #{$padding-horizontal-lg})
     }
     @include respond(xl) {
-        padding: 2rem calc( 2rem + #{$padding-horizontal-xl})
+        padding: 0rem calc( 2rem + #{$padding-horizontal-xl})
     }
 }

@@ -7,7 +7,8 @@ import router from './router/router'
 router( '/' )
 
 // IMPORT JAVASCRIPT MODULES/ COMPONENTS so that their code is run
-import header from './layout/header/header';
+import header from './layout/header/header'
+import footer from './layout/footer/footer'
 
 //testing: 
 import './test'

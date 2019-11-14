@@ -13,6 +13,7 @@ export let dom = {
     menu: document.querySelector('.menu'),
     linksList: document.querySelector( '.menu__list' ),
     routerView: document.getElementById( 'router-view' ),
+    placeholderFooter: document . getElementById( 'placeholder--footer' ),
 }
 
 export let fn = {

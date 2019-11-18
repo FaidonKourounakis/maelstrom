@@ -7,8 +7,20 @@ body {
 .page-title {
     text-decoration: none;
     color: $color-grey-light;
+    text-transform: uppercase;
+    text-align: right;
+    font-weight: 100;
+    font-size: 4.5rem;
+    border-bottom: 1px solid $color-white;
+    line-height: 4.5rem;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+.section-title {
+    text-decoration: none;
     text-transform: capitalize;
     text-align: left;
-    font-weight: 400;
-    font-size: 4rem;
+    font-weight: 700;
+    font-size: 2.5rem;
 }

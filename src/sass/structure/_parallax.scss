@@ -1,10 +1,12 @@
-@mixin parallax-img( $url ) {
-    background-image: url( "../../assets/images/paralax1.jpg" );
+.parallax {
+    // background-image: url( "../../assets/images/paralax1.jpg" );
     background-size: cover;
+    
     background-position: center;
     position: relative;
     // opacity: .7;
     background-attachment: fixed;
     z-index: $z-parallax-img;
+    height: 70vh;
 }
 

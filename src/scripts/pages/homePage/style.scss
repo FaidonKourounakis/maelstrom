@@ -1,5 +1,4 @@
 
-
 .home__page1 {
     padding-top: 3rem;
 }
@@ -7,9 +6,11 @@
 .home {
 
     &__img {
-
         &--1 {
-            // @include parallax-img("../../../assets/images/parallax2.jpg")
+            background-image: url('../assets/images/paralax1.jpg');
+        }
+        &--2 {
+            background-image: url('../assets/images/parallax2.jpg');
         }
     }
 }

@@ -1,4 +1,4 @@
-import './style.scss'
+
 import template from './template.html'
 import { dom, fn } from '../../store'
 

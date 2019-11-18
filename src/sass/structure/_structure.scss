@@ -22,16 +22,32 @@
         color: $color-black;
     }
     &:not(:first-child) {
-        // margin-top: $fade-height;
 
         &::before {
-            display: inline-block;
+            content: "";
+            display: block;
             position: absolute;
             height: $fade-height;
             width: 100%;
             top: -$fade-height;
+            left: 0;
+            z-index: 1;
         }
-        &--dark::before {
+    }
+    &:not(:last-child) {
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            height: $fade-height;
+            width: 100%;
+            left: 0;
+            z-index: 1;
+            bottom: -$fade-height;
+        }    
+    }
+    &--dark{
+        &:not(:first-child)::before {
             background-image: 
                 linear-gradient(
                     to top,
@@ -39,38 +55,31 @@
                     transparent 100%,
                 )
         }
-        &--light::before {
+        &:not(:last-child)::after {
             background-image: 
                 linear-gradient(
-                    to top,
+                    to bottom,
+                    $color-black 0%,
+                    transparent 100%,
+                )
+        }
+    }
+    &--light{
+        &:not(:first-child)::before {
+        background-image: 
+            linear-gradient(
+                to top,
+                $color-white 0%,
+                    transparent 100%,
+                )
+        }
+        &:not(:last-child)::after {
+            background-image: 
+                linear-gradient(
+                    to bottom,
                     $color-white 0%,
-                        transparent 100%,
-                    )
-            }
-
-        &::after {
-            display: inline-block;
-            position: absolute;
-            height: $fade-height;
-            width: 100%;
-            bottom: -$fade-height;
-
-            &.section--dark {
-                background-image: 
-                    linear-gradient(
-                        to bottom,
-                        $color-black 0%,
-                        transparent 100%,
-                    )
-            }
-            &.section--light {
-                background-image: 
-                    linear-gradient(
-                        to bottom,
-                        $color-white 0%,
-                        transparent 100%,
-                    )
-            }
+                    transparent 100%,
+                )
         }
     }
 }

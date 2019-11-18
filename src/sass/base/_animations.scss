@@ -26,3 +26,22 @@
         transform: rotate( -135deg );
     }
 }
+
+@mixin whiteGradientSlide( $bg-color, $slide-color: white, $duration: .3s ) {
+    transition: background-position $duration linear;
+        background-image: 
+        linear-gradient( 
+            120deg, 
+            $bg-color 35%, 
+            $slide-color 50%, 
+            $bg-color 65%, 
+        );
+        background-position: 100%;
+        background-size: 400%;
+        background-clip: text;
+        color: transparent;
+        -webkit-background-clip: text;
+        &:hover {
+            background-position: 0%;
+        }
+}

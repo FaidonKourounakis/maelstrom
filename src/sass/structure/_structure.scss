@@ -8,3 +8,69 @@
         padding: 0rem calc( 2rem + #{$padding-horizontal-xl})
     }
 }
+
+.section {
+    height: fit-content;
+    position: relative;
+
+    &--dark {
+        background-color: $color-black;
+        color: $color-white;
+    }
+    &--light {
+        background-color: $color-white;
+        color: $color-black;
+    }
+    &:not(:first-child) {
+        // margin-top: $fade-height;
+
+        &::before {
+            display: inline-block;
+            position: absolute;
+            height: $fade-height;
+            width: 100%;
+            top: -$fade-height;
+        }
+        &--dark::before {
+            background-image: 
+                linear-gradient(
+                    to top,
+                    $color-black 0%,
+                    transparent 100%,
+                )
+        }
+        &--light::before {
+            background-image: 
+                linear-gradient(
+                    to top,
+                    $color-white 0%,
+                        transparent 100%,
+                    )
+            }
+
+        &::after {
+            display: inline-block;
+            position: absolute;
+            height: $fade-height;
+            width: 100%;
+            bottom: -$fade-height;
+
+            &.section--dark {
+                background-image: 
+                    linear-gradient(
+                        to bottom,
+                        $color-black 0%,
+                        transparent 100%,
+                    )
+            }
+            &.section--light {
+                background-image: 
+                    linear-gradient(
+                        to bottom,
+                        $color-white 0%,
+                        transparent 100%,
+                    )
+            }
+        }
+    }
+}

@@ -1,6 +1,4 @@
-//import styles
-import './_header.scss' 
-import './_menu.scss' 
+
 
 import { state, dom } from '../../store'
 import animation from './animation'

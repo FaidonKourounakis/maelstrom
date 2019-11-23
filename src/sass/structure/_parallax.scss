@@ -15,16 +15,37 @@ $perspective: 50px;
 }
 
 
-$z-prlx__-1: -3;
+$z-prlx__-1: -100;
 $translateZ-prlx__-1: -10px;
 $scale-prlx__-1: scale-factor( $translateZ-prlx__-1 ) ;
 
 
-$z-prlx__-2: -4;
+$z-prlx__-2: -200;
 $translateZ-prlx__-2: -20px;
 $scale-prlx__-2: scale-factor( $translateZ-prlx__-2 ) ;
 
+$z-prlx__-3: -300;
+$translateZ-prlx__-3: -30px;
+$scale-prlx__-3: scale-factor( $translateZ-prlx__-3 ) ;
 
+$z-prlx__-4: -300;
+$translateZ-prlx__-4: -40px;
+$scale-prlx__-4: scale-factor( $translateZ-prlx__-4 ) ;
+
+$z-prlx__-5: -500;
+$translateZ-prlx__-5: -50px;
+$scale-prlx__-5: scale-factor( $translateZ-prlx__-5 ) ;
+
+$z-prlx__-6: -600;
+$translateZ-prlx__-6: -60px;
+$scale-prlx__-6: scale-factor( $translateZ-prlx__-6 ) ;
+
+$z-prlx__-7: -700;
+$translateZ-prlx__-7: -70px;
+$scale-prlx__-7: scale-factor( $translateZ-prlx__-7 ) ;
+
+
+.prlx__container {}
 
 .prlx {
 
@@ -42,17 +63,19 @@ $scale-prlx__-2: scale-factor( $translateZ-prlx__-2 ) ;
     }
 
     &__wrapper {
-        height: 70vh;
+        height: 100vh;
         width: 100%;
         overflow: hidden;
-        position: relative;
 
         > img {
+            object-fit: cover;
+            height: 100%;
             width: 100%;
-            position: absolute; 
         }
     }
 
+
+    //various depths
     &__-1 > *{
         transform: translateZ($translateZ-prlx__-1) scale( $scale-prlx__-1 );
         z-index: $z-prlx__-1;
@@ -60,9 +83,29 @@ $scale-prlx__-2: scale-factor( $translateZ-prlx__-2 ) ;
     &__-2 > * {
         transform: translateZ($translateZ-prlx__-2) scale( $scale-prlx__-2 );
         z-index: $z-prlx__-2;
+    }   
+    &__-3 > * {
+        transform: translateZ($translateZ-prlx__-3) scale( $scale-prlx__-3 );
+        z-index: $z-prlx__-3;
+    }   
+    &__-4 > * {
+        transform: translateZ($translateZ-prlx__-4) scale( $scale-prlx__-4 );
+        z-index: $z-prlx__-4;
+    }   
+    &__-5 > * {
+        transform: translateZ($translateZ-prlx__-5) scale( $scale-prlx__-5 );
+        z-index: $z-prlx__-5;
+    }   
+    &__-6 > * {
+        transform: translateZ($translateZ-prlx__-6) scale( $scale-prlx__-6 );
+        z-index: $z-prlx__-6;
+    }   
+    &__-7 > * {
+        transform: translateZ($translateZ-prlx__-7) scale( $scale-prlx__-7 );
+        z-index: $z-prlx__-7;
     }
 }
 
-// *::-webkit-scrollbar {
-//     display: none;
-// }
+*::-webkit-scrollbar {
+    display: none;
+}

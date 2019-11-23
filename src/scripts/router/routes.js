@@ -11,7 +11,8 @@ import comebackPage from '../pages/comebackPage/comebackPage'
         template: (an element with the html. 
             You can use the fn.elementOfString from scripts/store 
             to turn html string into a usable document.element.),
-        setup() { function that creates event listeners needed for the page's activity },
+        insert() { function that creates event listeners needed for the page's activity },
+        eject() { function that disables music etc when leaving the page },
         id: (the id string of the component's container. e.g. id: 'home-page')
     }
     !!!

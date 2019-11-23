@@ -4,7 +4,9 @@ import "../sass/main.scss"
 
 // initialise router to the homepage
 import router from './router/router'
-router( '/' )
+
+//setup the parallax effect:
+import './parallax/parallax'
 
 // IMPORT JAVASCRIPT MODULES/ COMPONENTS so that their code is run
 import header from './layout/header/header'
@@ -12,6 +14,8 @@ import footer from './layout/footer/footer'
 
 //testing: 
 import './test'
+
+//import
 
 
 

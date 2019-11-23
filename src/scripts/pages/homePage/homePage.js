@@ -4,14 +4,18 @@ import { dom, fn } from '../../store'
 
 const id = 'home-page'
 
-function setup() {
+function insert() {
     console.log( 'homepage setup')
+}
+function eject() {
+
 }
 
 
 
 export default {
-    setup,
+    insert,
+    eject,
     template: fn.elementOfString( template ),
     id
 }

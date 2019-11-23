@@ -4,14 +4,18 @@ import { dom, fn } from '../../store'
 
 const id = 'comeback-page'
 
-function setup() {
+function insert() {
+
+}
+function eject() {
 
 }
 
 
 
 export default {
-    setup,
+    insert,
+    eject,
     template: fn.elementOfString( template ),
     id
 }

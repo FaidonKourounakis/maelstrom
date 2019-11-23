@@ -16,7 +16,7 @@ function insert( route ) {
         document.getElementById( 'router-view' ).append( route.component.template )
 
         // run the component's setup (set up event listeners and stuff)
-        route.component.setup()
+        route.component.insert()
     }
 }
 
@@ -24,6 +24,9 @@ function insert( route ) {
 function eject( route ) {
     // just sets the display to none
     document.getElementById( route.component.id ).style.display = 'none'
+
+    // run the component's eject function that disables features when leaving the router-view
+    route.component.eject()
 }
 
 
@@ -60,8 +63,10 @@ function router( url ) { // the function that changes the route
     }
 }
 
+
 // sets up the homepage when first loading website
-router( '/' )
+router( window.location.pathname )
+
 
 // changes route when back button is clicked (onpopstate)
 window.addEventListener( 'popstate', e => {
@@ -69,6 +74,7 @@ window.addEventListener( 'popstate', e => {
     let url = e.state.url
     router( url ) 
 })
+
 
 // sets up router links
 let routerLinks = Array.from(   

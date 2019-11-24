@@ -5,7 +5,7 @@ import { dom, fn } from '../../store'
 const id = 'home-page'
 
 function insert() {
-    console.log( 'homepage setup')
+    console.log( 'homepage setup' )
 }
 function eject() {
 

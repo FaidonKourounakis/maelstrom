@@ -1,8 +1,74 @@
 
-.home__page1 {
-    padding-top: 3rem;
-}
-
 .home {
 
+    &__player {
+        height: fit-content;
+        text-align: right;
+        position: relative;
+        padding-top: 2rem;
+    }
+    &__track {
+        font-size: 4rem;
+        text-transform: capitalize;
+        font-weight: 400;
+        position: relative;
+        line-height: .7;
+
+        &--intro {
+            font-size: 1rem;
+            text-transform: uppercase;
+            // position: absolute;
+            // top: 0;
+            // left: 0;
+            margin-right: .5rem;
+            display: inline-block;
+            text-align: left;
+        }
+        &--name {
+            line-height: 1;
+        }
+    }
+    &__album {
+        text-transform: uppercase;
+        font-size: 2rem;
+        font-weight: 500;
+        opacity: .6;
+    }
+    &__btn--container {
+        margin-top: 1rem;
+        display: inline-block;
+        height: 9rem;
+        width: 9rem;
+
+        border: .5rem solid white; 
+        border-radius: 50%;
+        position: relative;
+    }
+    &__btn {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        margin: auto;
+        backface-visibility: hidden; 
+        text-align: center;
+        vertical-align: middle;
+        font-size: 5rem;
+        // top: calc(50% - 2.5rem);
+        // left: calc(50% - 2.5rem);
+
+        &--play {
+            margin-left: .5rem;
+        }
+
+        &--pause{
+            display: none;
+        }
+
+        &:hover &--pause {
+            display: block;
+        }
+        &:hover &--play {
+            display: none;
+        }
+    }
 }

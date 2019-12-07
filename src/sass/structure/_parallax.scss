@@ -57,7 +57,7 @@ $scale-prlx__-7: scale-factor( $translateZ-prlx__-7 ) ;
         transform-style: preserve-3d;
 
         & * {
-            transform-style: preserve-3d;
+            transform-style: inherit;
             z-index: $z-section
         }
     }

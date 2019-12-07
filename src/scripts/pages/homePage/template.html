@@ -3,7 +3,7 @@
         <h1 class="page-title page-title--light">
             Home
         </h1>
-        <div class="home__player">
+        <div id="home-player" class="home__player paused">
             <h2 class="home__track">
                 <span class="home__track--intro">
                     now playing
@@ -15,15 +15,25 @@
             <h3 id="home-album" class="home__album">
                 Album Name
             </h3>
-            <div class="home__btn--container">
-                <div id="btn-play" class="home__btn home__btn--play">
+            <div id="home-btn" class="home__btn--container">
+                <div class="home__btn home__btn--play">
                     <i class="fas fa-play"></i>
                 </div>
-                <div id="btn-pause" class="home__btn home__btn--pause">
+                <div class="home__btn home__btn--pause">
                     <i class="fas fa-pause"></i>
                 </div>
             </div>
-            <div class="home__progress"></div>
+            <div class="home__progress">
+                <span id="home-time" class="home__time">
+                    0:45 / 3:05
+                </span>
+                <span id="home-bar"  class="home__bar">
+                    <span class="home__bar--inner" id="home-inner-bar">
+                        <div id="home-slider" class="home__bar--slider"></div>
+                    </span>
+                    
+                </span>
+            </div>
         </div>
         <i class="fal fa-play-circle"></i>
     </div>

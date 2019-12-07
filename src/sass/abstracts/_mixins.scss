@@ -11,17 +11,20 @@
 //     }
 // }
 @mixin respond( $a, $b: false, $c: false, $d: false ) {
+    @if ($a == xxs) or ($b == xxs) or($c == xxs) or($d == xxs) { 
+        @media (max-width: 25rem) { @content };   
+    }
     @if ($a == xs) or ($b == xs) or($c == xs) or($d == xs) { 
-        @media (max-width: 37.5rem) { @content };   
+        @media (min-width: 25rem) and (max-width: 37.5rem) { @content };   
     }
     @if ($a == sm) or ($b == sm) or($c == sm) or($d == sm) { 
         @media (min-width: 37.5rem) and (max-width: 56.25rem) { @content };   
     }
     @if ($a == md) or ($b == md) or($c == md) or($d == md) { 
-        @media (min-width: 56.25rem) and (max-width: 77rem) { @content };   
+        @media (min-width: 56.25rem) and (max-width: 70rem) { @content };   
     }
     @if ($a == lg) or ($b == lg) or($c == lg) or($d == lg) { 
-        @media (min-width: 77rem) and (max-width: 112.5rem) { @content };   
+        @media (min-width: 70rem) and (max-width: 112.5rem) { @content };   
     }
     @if ($a == xl) or ($b == xl) or($c == xl) or($d == xl) { 
         @media (min-width: 112.5rem) { @content };   

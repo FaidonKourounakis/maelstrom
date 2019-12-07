@@ -5,7 +5,9 @@
         height: fit-content;
         text-align: right;
         position: relative;
-        padding-top: 2rem;
+        padding: 5rem 2rem 5rem 2rem;
+        transform-style: flat;
+        
     }
     &__track {
         font-size: 4rem;
@@ -15,6 +17,7 @@
         line-height: .7;
 
         &--intro {
+            margin-top: .7rem;
             font-size: 1rem;
             text-transform: uppercase;
             // position: absolute;
@@ -23,19 +26,28 @@
             margin-right: .5rem;
             display: inline-block;
             text-align: left;
+            // float: left; 
+            
+            @include respond( xxs ) {
+                // float: none;
+                
+                display: block;
+                text-align: right;
+            }
         }
         &--name {
             line-height: 1;
         }
     }
     &__album {
+        margin-top: .5rem;
         text-transform: uppercase;
         font-size: 2rem;
         font-weight: 500;
         opacity: .6;
     }
     &__btn--container {
-        margin-top: 1rem;
+        margin: 2rem;
         display: inline-block;
         height: 9rem;
         width: 9rem;
@@ -43,6 +55,16 @@
         border: .5rem solid white; 
         border-radius: 50%;
         position: relative;
+
+        perspective: 300px;
+        
+        cursor: pointer;
+        transition: all .2s linear;
+
+        &:active {
+            opacity: .8;
+            transform: translateY( 3px );
+        }
     }
     &__btn {
         position: absolute;
@@ -53,22 +75,85 @@
         text-align: center;
         vertical-align: middle;
         font-size: 5rem;
-        // top: calc(50% - 2.5rem);
-        // left: calc(50% - 2.5rem);
+        
+        transition: transform .5s ease-in-out;
 
         &--play {
             margin-left: .5rem;
+            transform: rotateY( 90deg );
+            transform-origin: center center -2.5rem;
+            // transform-origin: 50% 50% -200%;
         }
-
         &--pause{
-            display: none;
-        }
-
-        &:hover &--pause {
-            display: block;
-        }
-        &:hover &--play {
-            display: none;
+            transform-origin: center center -2.5rem;
+            transform: rotateY( 0 );
         }
     }
+    // apply paused class to the .home__player to change the icons
+    &__player.paused > * > .home__btn {
+        &--play {
+            transform: rotateY( 0deg );
+        }
+        &--pause {
+            transform: rotateY(-90deg);
+        }
+    }
+    // &__player.seeking > &__progress > &__bar > &__bar {
+    //     &--inner {
+    //         background-color:rgb(255, 255, 255);
+    //         & > .home__bar--slider {
+    //             transform: scale(1);
+    //         }
+    //     }
+    // }
+    &__bar {
+        display: inline-block;
+        width: 25rem;
+        height: 1rem;
+        // border: 1px solid white;
+        margin-left: 1rem;
+        border-radius: .5rem;
+        background-color: rgb(92, 92, 92);
+
+        // padding: .3rem .4rem .3rem .4rem;
+        
+        background-clip: border-box;
+
+        &--inner {
+            display: block;
+            background-color:rgb(182, 182, 182);
+            height: 1rem;
+            width: 50%;
+            border-radius: .5em;
+            position: relative;
+            transition: all .02s linear;
+
+        }
+        &--slider {
+            position: absolute;
+            display: inline-block;
+            height: 2rem;
+            width: 2rem;
+            border-radius: 1rem;
+            background-color: rgb(255, 255, 255);
+            top: -.5rem;
+            right: -1rem;
+            transform: scale(0);
+            
+            transition: transform .02s ease-out;
+
+        }
+        @include respond( lg, xl ) {
+            &:hover &--slider {
+                transform: scale(1);
+            }
+        }
+        &:active &--slider {
+            transform: scale(1);
+        }
+    }
+    &__time {
+        font-size: 1.5rem;
+    }
+
 }

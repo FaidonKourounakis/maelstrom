@@ -18,6 +18,7 @@ function insert() {
     }
 
     setupPlayer()
+        
 
 }
 function eject() {

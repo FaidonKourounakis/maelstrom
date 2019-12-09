@@ -20,7 +20,7 @@ $z-section: 3;
 
 
 //paddings: 
-$padding-horizontal-lg: 15vw;
-$padding-horizontal-xl: 20vw;
+$padding-horizontal-lg: calc( 50% - 56rem );
+$padding-horizontal-xl: calc( 50% - 56rem );
 
 $fade-height: 20vh;

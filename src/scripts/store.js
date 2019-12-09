@@ -3,6 +3,19 @@
 export let state = {
     hover: false,
     showMenu: false,
+    musicDataLink: 'https://res.cloudinary.com/faidondev/raw/upload/v1575919120/Maelstrom%20Assets/images/music_tjdc4r.json',
+    async getMusicData() {
+        if ( !this.musicData ) {
+            let response = await fetch( this.musicDataLink )
+        
+            let data = await response.json()
+            
+            this.musicData = data
+        }
+        
+        return this.musicData
+    }
+
 }
 
 export let dom = {

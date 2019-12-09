@@ -61,6 +61,8 @@ function router( url ) { // the function that changes the route
         alert( 'Invalid path. Redirected to home page' ) 
         router( '/' )
     }
+
+    setupRouterLinks()
 }
 
 
@@ -77,14 +79,15 @@ window.addEventListener( 'popstate', e => {
 
 
 // sets up router links
-let routerLinks = Array.from(   
-    document.querySelectorAll( '[route]' )
-)
-routerLinks.forEach( el => {
-    el.addEventListener( 'click', e => {
-        router( el.attributes.route.value )
+function setupRouterLinks() {
+    let routerLinks = Array.from(   
+        document.querySelectorAll( '[route]' )
+    )
+    routerLinks.forEach( el => {
+        el.addEventListener( 'click', e => {
+            router( el.attributes.route.value )
+        } )
     } )
-} )
-
+}
 
 export default router

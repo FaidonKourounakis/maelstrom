@@ -1,6 +1,6 @@
 
 import {Howl, Howler} from 'howler';
-import { dom, fn } from '../../store'
+import { state, dom, fn } from '../../store'
 import Muse from '../../player/amuse'
 
 import path from 'path'
@@ -14,31 +14,41 @@ function setupPlayer() {
     // 4. dom.album for the album title
     // somehow grap the right 
 
-    let homePlayer = new Muse( 'https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3' )
+    state.getMusicData().then( data => {
 
-    dom.home.btn.addEventListener( 'click', onclick )
-    function onclick() {
-        if ( homePlayer.paused ) {
-            homePlayer.play()
-        } else {
+        const albumNames = Object.keys( data.albums )
+        const album = albumNames[ Math.floor( Math.random() * albumNames.length ) ]
+        
+        const songIds = Object.keys( data.albums[ album ] )
+        const song = data.albums[ album ][ songIds[ Math.floor( Math.random() * songIds.length ) ] ]
 
-            homePlayer.pause()
+        
+        let homePlayer = new Muse( song.src )
+
+        dom.home.btn.addEventListener( 'click', onclick )
+        function onclick() {
+            if ( homePlayer.paused ) {
+                homePlayer.play()
+            } else {
+
+                homePlayer.pause()
+
+            }
+        } 
+
+        homePlayer.addSeekBar( dom.home.outerBar, dom.home.innerBar )
+        homePlayer.addElement( 'completeTimeStamp', dom.home.time)
+
+        homePlayer.addEventListener( 'play', () => {
+            fn.removeAllClassesOf( dom.home.player, 'paused' )
+        })
+        homePlayer.addEventListener( 'pause', () => {
             dom.home.player.classList.add( 'paused' )
+        })
 
-        }
-    } 
-
-    homePlayer.addSeekBar( dom.home.outerBar, dom.home.innerBar )
-    homePlayer.addElement( 'completeTimeStamp', dom.home.time)
-
-    homePlayer.addEventListener( 'play', () => {
-        fn.removeAllClassesOf( dom.home.player, 'paused' )
-    })
-    homePlayer.addEventListener( 'pause', () => {
-        dom.home.player.classList.add( 'pause' )
-    })
-
-    
+        dom.home.album.innerText = album
+        dom.home.track.innerText = song.title
+        })
 }
 
 

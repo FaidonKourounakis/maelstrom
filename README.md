@@ -22,7 +22,7 @@ router.js)
 
 - Wrote a very perfomant CSS-only parallax effect ( it took me too much time ) 
 
-- Created a pure js music player
+- Created a pure js audio library: Amuse.js (and used it)
 
 - Lazy loaded images and songs
 
@@ -47,6 +47,11 @@ router.js)
     ```npm 
     npm run build
     ```
+5. Deploy to gh-pages
+    ```npm 
+    npm run deploy
+    ```
+   
 
 ****
 

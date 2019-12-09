@@ -5,3 +5,5 @@ import "./sass/main.scss"
 // IMPORT THE JAVASCRIPT
 // importing it will make it run automatically
 import './scripts/main.js'
+
+import '../netlify.toml'

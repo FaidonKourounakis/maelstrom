@@ -1,7 +1,7 @@
 
 import {Howl, Howler} from 'howler';
 import { dom, fn } from '../../store'
-import Muse from '../../player/player'
+import Muse from '../../player/amuse'
 
 import path from 'path'
 
@@ -16,7 +16,8 @@ function setupPlayer() {
 
     let homePlayer = new Muse( 'https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3' )
 
-    dom.home.btn.addEventListener( 'click', () => {
+    dom.home.btn.addEventListener( 'click', onclick )
+    function onclick() {
         if ( homePlayer.paused ) {
             homePlayer.play()
         } else {
@@ -25,7 +26,7 @@ function setupPlayer() {
             dom.home.player.classList.add( 'paused' )
 
         }
-    } )
+    } 
 
     homePlayer.addSeekBar( dom.home.outerBar, dom.home.innerBar )
     homePlayer.addElement( 'completeTimeStamp', dom.home.time)
@@ -36,6 +37,8 @@ function setupPlayer() {
     homePlayer.addEventListener( 'pause', () => {
         dom.home.player.classList.add( 'pause' )
     })
+
+    
 }
 
 

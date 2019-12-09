@@ -4,11 +4,16 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "gh-pages": "^2.1.1",
     "howler": "^2.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-private-methods": "^7.7.4",
+    "babel-cli": "^6.26.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "eslint": "^6.6.0",
@@ -30,7 +35,8 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --open",
     "build": "webpack --config webpack.prod.js",
-    "sass": "node-sass sass/main.scss css/style.css -w"
+    "deploy": "npm run build && npm run save && gh-pages -d dist ",
+    "save": "git add . && git commit && git push"
   },
   "keywords": [],
   "author": "",

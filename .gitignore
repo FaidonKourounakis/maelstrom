@@ -4,3 +4,5 @@ dir dist
 dist/
 src/assets/music/
 dir src/assets/music
+# Local Netlify folder
+.netlify

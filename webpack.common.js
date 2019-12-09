@@ -13,7 +13,7 @@ module.exports = {
                 use: ['html-loader',]
             },
             {
-                test: /\.(svg|png|jpg|jpeg|gif|mp3)$/,
+                test: /\.(svg|png|jpg|jpeg|gif|mp3|toml)$/,
                 use: {
                     loader: 'file-loader',
                     options: {
@@ -23,10 +23,25 @@ module.exports = {
                 }
             },
             {
+              test: /\.toml$/,
+              use: {
+                  loader: 'file-loader',
+                  options: {
+                      name: '[name].[ext]',
+                      outputPath: '/'
+                  }
+              }
+            },
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
+                    options: {
+                      plugins: [
+                        'babel-plugin-transform-class-properties'
+                      ]
+                    }
                   }
             },
             {

@@ -46,36 +46,49 @@ export let fn = {
 
         }
     },
-    onmousehold( el, callback, t = 100 ) { // ads an 'onmousehold fake event handler
+    onmousehold( el, callback, t = 100 ) { // ads an 'onmousehold fake event handler. use the e.e as the event
 
         let pressed = false
 
-        let fakeEvent = { clientX: 0, clientY: 0 }
-        window.addEventListener( 'mousemove', e => {
-            fakeEvent.clientX = e.clientX
-            fakeEvent.clientY = e.clientY
-        })
+        let fakeEvent = {}
 
-        window.addEventListener( 'mouseup', e => {
+        const updateFakeEvent = ( e, x, y ) => {
+            fakeEvent.e = e
+            fakeEvent.x = x
+            fakeEvent.y = y
+        }
+        const startUpdating = () => {
+            window.addEventListener( 'mousemove', e => updateFakeEvent( e, e.clientX, e.clientY) )
+            window.addEventListener( 'touchmove', e => updateFakeEvent( e, e.targetTouches[0].clientX, e.targetTouches[0].clientY ) )
+        }
+        
+        const stopUpdating = () => {
+            window.removeEventListener( 'mousemove', updateFakeEvent )
+            window.removeEventListener( 'touchmove', updateFakeEvent )
+        }
+        const stopHoldEvent = e => {
             pressed = false
-        })
+            stopUpdating()
+        }
+        const startHoldEvent = e => {
+            startUpdating()
 
-        el.addEventListener( 'mousedown', e => {
-            
             if ( !pressed ) {
-                
                 pressed = true
 
                 let id = setInterval( () => {
-
                     if ( !pressed ) {
                         clearInterval(id)
                     } 
-                    
                     callback( fakeEvent )
-                    
                 }, t )
             }
-        })
+        }
+
+        window.addEventListener( 'mouseup', stopHoldEvent )
+        window.addEventListener( 'touchend', stopHoldEvent )
+
+        el.addEventListener( 'mousedown', startHoldEvent )
+        el.addEventListener( 'touchstart', startHoldEvent )
     }
 }

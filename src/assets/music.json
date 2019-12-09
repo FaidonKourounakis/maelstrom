@@ -1,0 +1,208 @@
+{
+    "albums": {
+        "flamboyant gevoelsfestijn": {
+            "A01S01" : {
+                "title": "intro",
+                "#": 1,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A01S02" : {
+                "title": "Rob de Nijs",
+                "#": 2,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297837/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/02_Rob_de_Nijs_jgjubw.mp3"
+            },
+            "A01S03" : {
+                "title": "Winterzondag",
+                "#": 3,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297843/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/03_Winterzondag_f6iedq.mp3"
+            },
+            "A01S04" : {
+                "title": "AIO-tijd",
+                "#": 4,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297839/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/04_AIO-tijd_ylzou6.mp3"
+            },
+            "A01S5" : {
+                "title": "Aktiegekte",
+                "#": 5,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297838/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/05_Aktiegekte_hwa1pi.mp3"
+            },
+            "A01S06" : {
+                "title": "Maarten Moe",
+                "#": 6,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297841/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/06_Maarten_Moe_amevl0.mp3"
+            },
+            "A01S07" : {
+                "title": "Vriesdroogmachine",
+                "#": 7,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297840/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/07_Vriesdroogmachine_t3qslq.mp3"
+            },
+            "A01S08" : {
+                "title": "Miss Roddles",
+                "#": 8,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297849/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/08_Miss_Roddles_mzdsvb.mp3"
+            },
+            "A01S09" : {
+                "title": "Bui",
+                "#": 9,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297859/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/09_Bui_jpg7kq.mp3"
+            },
+            "A01S10" : {
+                "title": "Juglied",
+                "#": 10,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297850/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/10_Juglied_kob389.mp3"
+            },
+            "A01S11" : {
+                "title": "Hora Est (take 67)",
+                "#": 11,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297846/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/11_Hora_Est_take_67_bkabug.mp3"
+            },
+            "A01S12" : {
+                "title": "Ode op Ewoud (toch gepromoveerd)",
+                "#": 12,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297852/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/12_Ode_op_Ewoud_toch_gepromoveerd_qqccjg.mp3"
+            },
+            "A01S13" : {
+                "title": "Melk",
+                "#": 13,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297856/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/13_Melk_su3yir.mp3"
+            },
+            "A01S14" : {
+                "title": "Mijn Man",
+                "#": 14,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297863/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/14_Mijn_Man_g6c3sv.mp3"
+            },
+            "A01S15" : {
+                "title": "Het Groot Aardbijenlied",
+                "#": 15,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297859/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/15_Het_groot_Aardbeienlied_tkgouw.mp3"
+            },
+            "A01S16" : {
+                "title": "Wilhemus",
+                "#": 16,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297858/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/16_Wilhelmus_gucdrd.mp3"
+            }
+        },
+        "een licht astmatish geluid": {
+            "A02S01" : {
+                "title": "Afwas is Oorlog",
+                "#": 1,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S02" : {
+                "title": "Intro",
+                "#": 2,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S03" : {
+                "title": "Giromaat",
+                "#": 3,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S04" : {
+                "title": "Tomaten Tortilla",
+                "#": 4,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S5" : {
+                "title": "Jeroen Groen",
+                "#": 5,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S06" : {
+                "title": "Commercial",
+                "#": 6,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S07" : {
+                "title": "Belofte maakt schuld",
+                "#": 7,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S08" : {
+                "title": "Mooie Uurtjes",
+                "#": 8,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S09" : {
+                "title": "Escortservice",
+                "#": 9,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S10" : {
+                "title": "Zakflacon",
+                "#": 10,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S11" : {
+                "title": "De Tafel en Ik",
+                "#": 11,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S12" : {
+                "title": "Inge Agne Onge",
+                "#": 12,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S13" : {
+                "title": "Draagtas",
+                "#": 13,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S14" : {
+                "title": "het Lang van de begrensde onmogelijkheden",
+                "#": 14,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S15" : {
+                "title": "Sier",
+                "#": 15,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S16" : {
+                "title": "06",
+                "#": 16,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S17" : {
+                "title": "Nokia Kloon",
+                "#": 17,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S18" : {
+                "title": "Oma",
+                "#": 18,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S19" : {
+                "title": "Oudjaar",
+                "#": 19,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S20" : {
+                "title": "Jingle",
+                "#": 20,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S21" : {
+                "title": "Karakter",
+                "#": 21,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S22" : {
+                "title": "De Andere 4 Jargetijden",
+                "#": 22,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S23" : {
+                "title": "Extro",
+                "#": 23,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            },
+            "A02S24" : {
+                "title": "Jippyahee",
+                "#": 24,
+                "src": "https://res.cloudinary.com/faidondev/video/upload/v1575297829/Maelstrom%20low%20quality/flamboyant%20gevoelsfestijn/01_Intro_jwzpsv.mp3"
+            }
+        }
+    }
+}

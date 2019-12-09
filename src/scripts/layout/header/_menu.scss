@@ -6,7 +6,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba($color-black, .9);
+    background-color: rgba($color-black, .7);
+
     
     //animation sliding in down
     transform: translateY(-100%) scaleY(0);

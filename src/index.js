@@ -6,4 +6,4 @@ import "./sass/main.scss"
 // importing it will make it run automatically
 import './scripts/main.js'
 
-import '../netlify.toml'
+ 

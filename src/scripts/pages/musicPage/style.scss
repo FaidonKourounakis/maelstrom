@@ -1,0 +1,20 @@
+.music {
+
+    &__page {
+        background-color: black;
+        background-image: 
+        
+            linear-gradient( 110deg, rgba(138, 138, 138, 0.548) 0%, rgba(0, 0, 0, 0.678) 100%),    
+            url('https://res.cloudinary.com/faidondev/image/upload/v1575816591/Maelstrom%20Assets/images/Maelstrom_Hebbes_11_cds_msmhbb.jpg');
+        background-size: cover;
+        height: 90vh;
+    }
+
+    &__player {
+
+    }
+
+    &__songs {
+        
+    }
+}

@@ -17,7 +17,7 @@ function setupPlayer() {
         const song = music.albums[ album ][ songIds[ Math.floor( Math.random() * songIds.length ) ] ]
 
         
-        data.player = new Muse( song.src )
+        data.player = new Muse( song.src, 'homePlayer' )
         
         dom.home.btn.addEventListener( 'click', onclick )
         function onclick() {

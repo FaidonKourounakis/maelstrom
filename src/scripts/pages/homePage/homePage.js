@@ -12,30 +12,37 @@ function setupPlayer() {
 
         const albumNames = Object.keys( music.albums )
         const album = albumNames[ Math.floor( Math.random() * albumNames.length ) ]
-        
         const songIds = Object.keys( music.albums[ album ] )
         const song = music.albums[ album ][ songIds[ Math.floor( Math.random() * songIds.length ) ] ]
 
         
         data.player = new Muse( song.src, 'homePlayer' )
         
-        dom.home.btn.addEventListener( 'click', onclick )
-        function onclick() {
+
+/********************************************************
+ * the pause on the click event listener doesnt work
+ * *****************************************************
+ */
+
+        dom.home.btn.addEventListener( 'click', event => {
             if ( data.player.paused ) {
                 data.player.play()
             } else {
                 data.player.pause()
             }
-        } 
+        } )
+        
+
 
         data.player.addSeekBar( dom.home.outerBar, dom.home.innerBar )
-        data.player.addElement( 'completeTimeStamp', dom.home.time)
-
+        data.player.addElement( 'completeTime', dom.home.time)
+        
         data.player.addEventListener( 'play', () => {
             fn.removeAllClassesOf( dom.home.player, 'paused' )
         })
         data.player.addEventListener( 'pause', () => {
             dom.home.player.classList.add( 'paused' )
+            console.log('from home pause')
         })
 
         dom.home.album.innerText = album

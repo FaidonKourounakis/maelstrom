@@ -1,183 +1,215 @@
-/***************************************
- * DOCUMENTATION
- * 
- * 1. to make a new muse : 
- *      var muse = new use( src1, src2,... ) 
- * 
- * 2. to add an event listener: 
- *      muse.addEventListener( 'event', callback )
- *      event can be 'play | pause | stop | seek | change | next | previous | playing'
- * 
- * 3. add elements : 
- *      muse.addElement( type, element) 
- *      and type can be: '
- *          | currentTimeStamp -> prints current time
- *          | durationTimeStamp -> prints duration
- *          | completeTimeStamp -> prints the aformentioned in one
- * 
- * 4. ohter Methods: 
- *      muse.play(), 
- *      muse.pause(), 
- *      muse.stop(),
- *      muse.seekToPercentage( 10 ),
- *      muse.seekToSeconds( 50 ),
- *      muse.next(),
- *      muse.previous(),
- *      
- * 5. properties: 
- *      muse.playing
- *      muse.paused
- *      muse.duration
- *      muse.currentSeconds
- *      muse.currentPercentage
- *      muse.currentSong.( id | src |)
- */
+class Amuse {
 
-
-
-import {Howl, Howler} from 'howler';
-import { dom, fn } from '../store'
-
-class Muse {
-
-    constructor( ...src ) {
-        if (!src) {
-            throw   'Error: no src given to Muse constructor' 
+    constructor( src, id, meta, load ) {
+        if ( !src && !id ) {
+            this._currentMuseIndex = false
         } else {
-
-            // Create the new Audio element
-            this.srcIndex = 0
-            this.audio = new Audio( src[ this.srcIndex ] )
-            this.audio.addEventListener( 'timeupdate', e => this.ontimeupdate(),  )
-
-            this.state = {
-                playing: false
-            }
+            this.addMuse( src, id, meta, load)
+            this._currentMuseIndex = 0
         }
     }
 
-    // private 
-    ontimeupdate() {
-        
-        this.onplaying ? this.onplaying() : undefined 
+    /************************************
+     * PUBLIC METHODS
+     */
 
-        this.updateUI()
-
-    }
-    updateUI() {
-        if ( this.bar ) {
-            this.bar.inner.style.width = this.currentPercentage * 100 + '%'
-        }
-
-        let cur = {
-            min: Math.floor(this.currentSeconds / 60 ),
-            sec: Math.floor( this.currentSeconds % 60 )
-        }
-        let dur = {
-            min: Math.floor( this.duration / 60 ),
-            sec: Math.floor( this.duration % 60 )
-        }
-        if ( this.currentTimeStamp ) {
-            this.currentTimeStamp.innerText = `${ cur.min }:${ cur.sec }`
-        }
-        if ( this.durationTimeStamp ) {
-            this.durationTimeStamp.innerText = `${ dur.min }:${ dur.sec }`
-        }
-        
-        if ( this.completeTimeStamp ) {
-            this.completeTimeStamp.innerText = `${cur.min}:${cur.sec} / ${dur.min}:${dur.sec}`
-        }
-    }
-    
-
-    // public properties
-    get duration() {
-        return this.audio.duration
-    }
-    get currentSeconds() {
-        
-        return this.audio.currentTime
-    }
-    get currentPercentage() {
-        return this.currentSeconds / this.audio.duration
-    }
-    get playing() {
-        return this.state.playing
-    }
-    get paused() {
-        return !this.state.playing
-    }
-
-
-
-    // public methods
-    addEventListener( event, callback ) {
-        this[ 'on' + event ] = callback 
-    }
-    addSeekBar( outer, inner ) {
-
-        if ( outer && inner ) {// set the bar property
-            this.bar = {
-                outer,
-                inner
-            }
-            fn.onmousehold( this.bar.outer , e => { //seek the bar when
-                
-                let barPositionX = this.bar.outer.getBoundingClientRect().left
-                let barWidth = this.bar.outer.clientWidth
-
-                let percentage = ( e.x - barPositionX ) / barWidth // calculate the percentage
-                
-                if ( percentage >= 0 && percentage <= 1 ) { // check if the mouse is insed the bar
-                    
-                    this.seekToPercentage( percentage ) 
-                    
-                    this.updateUI()
-
+    load( id = this.currentMuse.id ) {
+        if ( !this.getMuseById( id ) ) {
+            throw new Error( 'No muse exists with the id passed to load()' )
+        } else {
+            let muse = this._muses.find( muse => muse.id === id )
+            if ( !muse.audio ) {
+                muse.audio = new Audio( muse.src ) 
+                for ( event in this._audioEventListeners ) {
+                    muse.audio.addEventListener( event, this._audioEventListeners[ event ] )
                 }
-
-            }, 50)
-        } else {
-            throw `incorrect arguments given to addSeekBar()`
+                this._on( 'load' )
+            }
         }
     }
-    addElement( type, el ) {
 
-        this[type] = el
+    play() {
+        // the user's event listener is called from this._audioEventListeners
+        this.load()
+        this.currentMuse.audio.play()
     }
-    play() { // when forced to play
-
-        this.audio.play() // play the audio
-
-        this.onplay ? this.onplay() : undefined
-
-        this.state.playing = true
-    }
-    pause() {
-
-        this.audio.pause() 
-
-        this.onpause ? this.onpause() : undefined
-
-        this.state.playing = false
-    }
-    seekToSeconds( time ) {
-        if ( time >= 0 && time <= this.duration ) {
-            this.audio.currentTime = time
-            this.onseek ? this.onseek() : undefined
-
-            this.state.playing ? this.play() : this.pause()
-        } else {
-            throw `incorrect time stamp passed to updateTime()`
-        }
-    }
-    seekToPercentage( percentage ) {
-        this.seekToSeconds( percentage * this.duration )
-    }
-
     
+    pause() {
+        // the user's event listener is called from this._audioEventListeners
+        this.load()
+        this.currentMuse.audio.pause()
+        console.log( 'from amuse.pause()')
+    }
+
+    stop() {
+        this.pause()
+        
+    }
+
+    next() {}
+
+    //previous() {}
+
+    //skipToId( id ) {}
+
+    addMuse( src, id = false, meta = {}, load = true ) {
+        if ( !id ) {
+            throw new Error( 'No id given to Muse constructor' )
+        } else if ( this.getMuseById( id ) ) {
+            throw new Error( 'Used Id given to Muse constructor. Unique muse id is required.' )
+        } else {
+            this._muses.push( {
+                src,
+                id,
+                meta
+            } )
+            if ( load ) {
+                this.load( id )
+            }
+        }
+    }
+    
+    removeMuseById( id )  {
+        const museIndexToRemove = this._getMuseIndexById( id )
+        if ( museIndexToRemove === this._currentMuseIndex ) {
+            this.stop()
+            this._muses.splice( museIndexToRemove, 1 )
+        }
+    }
+
+    addSeekBar( inner, outer ) {
+        if ( !inner || !outer ) throw new Error('No elements to the .addSeekBar() method')
+        else this._elements.bar.push( { inner, outer } )
+    }
+
+    addElement( type, el ) {
+        if ( ! this._elements[ type ] ) {
+            throw new Error( 'This type of element is not supported. Choose from ' + Object.keys( this._elements ).join(' | ') )
+        } else {
+            this._elements[ type ].push( el )
+        }
+    }
+
+    addEventListener( type, callback ) {
+        if ( ! this._eventListeners[ type ] ) {
+            throw new Error( 'This type of event listener is not supported. Choose from ' + Object.keys( this._eventListeners ).join(' | ') )
+        } else if ( typeof callback != 'function' ) {
+            throw new Error( 'No callback function passed to Amuse.addEventistener()')
+        } else {
+            this._eventListeners[ type ].push( callback )
+        }
+    }
+
+    getMuseById( id ) {
+        let muse = this._muses.find( muse => muse.id === id )
+        if ( muse ) return muse
+        else return false
+    }
+
+    /***********************************
+     * PUBLIC SETTERS
+     */
+
+    //set currentSeconds( s ) {}
+
+    //set currentPercentage( p ) {}
+
+    //set volume( v ) {}
+
+
+    /****************************************
+     * PUBLIC GETTERS
+     */
+
+    get playing() {
+        if ( this.currentMuse.audio && ! this.currentMuse.audio.paused ) {
+
+        }
+    }
+    
+    get paused() {
+        return ! this.playing
+    }
+
+    //get duration() {}
+
+    //get currentSeconds() {}
+
+    //get currentPercentage() {}
+
+    get currentMuse() {
+        if ( this._currentMuseIndex === false ) throw new Error('No muse Exists yet')
+        else return this._muses[ this._currentMuseIndex ]
+    }
+
+
+    /**********************************
+     * PUBLIC PROPERTIES
+     */
+
+    autoPlay = false
+
+
+    /************************************
+     * PRIVATE
+     */
+
+    _muses = []
+
+    _currentMuseIndex = 0
+    
+    _getMuseIndexById( id ) {
+        return this._muses.findIndex( muse => muse.id === id )
+    }
+
+    _eventListeners = {
+        play: [],
+        pause: [],
+        stop: [],
+        seek: [],
+        next: [],
+        previous: [],
+        skip: [],
+        playing: [],
+        load: [],
+        error: [],
+    }
+    
+    _on( event ) { 
+        this._eventListeners[ event ].forEach( 
+            fn => fn( this.currentMuse, this ) 
+        ) 
+    }
+
+    _elements = {
+        currentTime: [],
+        durationTime: [],
+        completeTime: [],
+        bar: []
+    }
+
+    get _museIds() {
+        return this._muses.map( val => val.id )
+    }
+
+    get _audioEventListeners() {
+        return {
+            play: e => {
+                this._on( 'play' )
+            },
+            pause: e => {
+                this._on( 'pause' )
+            },
+            timeupdate: e => {},
+            error: e => {},
+            ended: e=> {
+                if ( autoPlay ) {
+                    this.next()
+                }
+            }
+        }
+    }
     
 }
 
-
-export default Muse
+export default Amuse

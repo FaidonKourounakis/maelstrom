@@ -31,23 +31,23 @@ function setupPlayer() {
                 data.player.pause()
             }
         } )
-        
 
 
         data.player.addSeekBar( dom.home.outerBar, dom.home.innerBar )
         data.player.addElement( 'completeTime', dom.home.time)
         
-        data.player.addEventListener( 'play', () => {
+        data.player.addEventListener( 'play', amuse => {
             fn.removeAllClassesOf( dom.home.player, 'paused' )
         })
-        data.player.addEventListener( 'pause', () => {
+        data.player.addEventListener( 'pause', amuse => {
             dom.home.player.classList.add( 'paused' )
-            console.log('from home pause')
         })
 
         dom.home.album.innerText = album
         dom.home.track.innerText = song.title
-        })
+    
+        
+    })
 }
 
 function insert() {
@@ -67,7 +67,6 @@ function insert() {
 
 }
 function eject() {
-    console.log(data.player)
     data.player.pause()
 }
 

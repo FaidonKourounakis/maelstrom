@@ -63,49 +63,54 @@ export let fn = {
 
         }
     },
-    onmousehold( el, callback, t = 100 ) { // ads an 'onmousehold fake event handler. use the e.e as the event
+    onmousehold( el, fn, t = 100 ) {
 
-        let pressed = false
-
-        let fakeEvent = {}
-
-        const updateFakeEvent = ( e, x, y ) => {
-            fakeEvent.e = e
-            fakeEvent.x = x
-            fakeEvent.y = y
+        let eventCopy, holdX, holdY, pressed = false
+    
+        function updateMouse( e ) {
+            eventCopy = e
+            holdX = e.clientX
+            holdY = e.clientY
         }
-        const startUpdating = () => {
-            window.addEventListener( 'mousemove', e => updateFakeEvent( e, e.clientX, e.clientY) )
-            window.addEventListener( 'touchmove', e => updateFakeEvent( e, e.targetTouches[0].clientX, e.targetTouches[0].clientY ) )
+        function updateTouch( e ) {
+            eventCopy = e
+            holdX = e.touches[0].clientX
+            holdY = e.touches[0].clientY
         }
-        
-        const stopUpdating = () => {
-            window.removeEventListener( 'mousemove', updateFakeEvent )
-            window.removeEventListener( 'touchmove', updateFakeEvent )
+        function insertListeners() {
+            window.addEventListener( 'touchmove', updateTouch )
+            window.addEventListener( 'mousemove', updateMouse )
         }
-        const stopHoldEvent = e => {
+        function ejectListeners() {
+            window.removeEventListener( 'touchmove', updateTouch ) 
+            window.removeEventListener( 'mousemove', updateMouse ) 
+        }
+        function startUpdate() {
+            insertListeners()
+            let i = setInterval( () => {
+                fn( eventCopy, holdX, holdY )
+                if ( !pressed ) {
+                    ejectListeners() 
+                    clearInterval( i )
+                }
+            }, t )
+        }
+        function stopUpdate() {
             pressed = false
-            stopUpdating()
         }
-        const startHoldEvent = e => {
-            startUpdating()
-
-            if ( !pressed ) {
-                pressed = true
-
-                let id = setInterval( () => {
-                    if ( !pressed ) {
-                        clearInterval(id)
-                    } 
-                    callback( fakeEvent )
-                }, t )
-            }
+        function mousedown( e ) {
+            pressed = true
+            updateMouse( e )
+            startUpdate()
         }
-
-        window.addEventListener( 'mouseup', stopHoldEvent )
-        window.addEventListener( 'touchend', stopHoldEvent )
-
-        el.addEventListener( 'mousedown', startHoldEvent )
-        el.addEventListener( 'touchstart', startHoldEvent )
+        function touchstart( e ) {
+            pressed = true
+            updateTouch( e )
+            startUpdate()
+        }
+        el.addEventListener( 'touchstart', touchstart ) 
+        el.addEventListener( 'mousemove', mousedown )
+        window.addEventListener( 'touchend', stopUpdate ) 
+        window.addEventListener( 'mouseup', stopUpdate )
     }
 }

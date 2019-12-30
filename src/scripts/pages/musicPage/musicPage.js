@@ -83,30 +83,31 @@ function insert() {
         })
 
         // add all of them to an Amuse instance
-        let amuse = new Amuse() 
-        data.songs.forEach( song => amuse.addMuse( 
+        data.amuse = new Amuse() 
+        data.songs.forEach( song => data.amuse.addMuse( 
             song.src, 
             song.id, 
             { title: song.title, album: song.album, }, 
             false
         ) )
+        data.amuse.rememberTime = false
 
         // add functionality to the player 
-        amuse.addSeekBar( dom.music.outerBar, dom.music.innerBar, 10 )// add seek bar
-        amuse.addElement( 'currentTime', dom.music.currentTime )// add time stamps
-        amuse.addElement( 'durationTime', dom.music.durationTime )
+        data.amuse.addSeekBar( dom.music.outerBar, dom.music.innerBar, 10 )// add seek bar
+        data.amuse.addElement( 'currentTime', dom.music.currentTime )// add time stamps
+        data.amuse.addElement( 'durationTime', dom.music.durationTime )
 
         //add play btn
         dom.music.mainBtn.addEventListener( 'click', e => {
-            if ( amuse.paused ) amuse.play()
-            else amuse.pause()
+            if ( data.amuse.paused ) data.amuse.play()
+            else data.amuse.pause()
         } )
-        amuse.addEventListener( 'play', muse => fn.removeAllClassesOf( dom.music.mainBtn, 'paused' ) )
-        amuse.addEventListener( 'pause', muse => dom.music.mainBtn.classList.add( 'paused' ) )
+        data.amuse.addEventListener( 'play', muse => fn.removeAllClassesOf( dom.music.mainBtn, 'paused' ) )
+        data.amuse.addEventListener( 'pause', muse => dom.music.mainBtn.classList.add( 'paused' ) )
 
         //add next and previous btn
-        dom.music.nextBtn.addEventListener( 'click', e => amuse.next() )
-        dom.music.previousBtn.addEventListener( 'click', e => amuse.previous() )
+        dom.music.nextBtn.addEventListener( 'click', e => data.amuse.next() )
+        dom.music.previousBtn.addEventListener( 'click', e => data.amuse.previous() )
 
 
         // add the song elements:
@@ -123,17 +124,20 @@ function insert() {
             
             // add them to the songs-list:
             dom.music.songsList.innerHTML += html
-        } )
 
-        // add functionality to the list: 
-        data.songs.forEach( song => {
-            document.getElementById( song.id ).addEventListener( 'click', e => {
-                amuse.skipToId( song.id )
-            } )
         } )
+        data.songs.forEach( song => {
+            // add functionality to the list: 
+            console.log( document.getElementById( song.id ) )
+            document.getElementById( song.id ).addEventListener( 'click', e => {
+                console.log( 'clicked')
+                data.amuse.skipToId( song.id )
+            } )
+        })
+
          
-        let previousImg = ''
-        let previousId = amuse.currentMuse.id
+        let previousAlbum = ''
+        let previousId = data.amuse.currentMuse.id
         function updateUI( muse ) { 
 
             // change title
@@ -149,63 +153,24 @@ function insert() {
             previousId = muse.id
             
             // change album image if needed
-            let img = music.albums[ muse.meta.album ].img
-            
-            // fade out and in
-            const player = dom.music.player
-            //fade out
-            
-            function changeAlbum() {
-                // change album image
-                if ( previousImg != img ) {
-                    previousImg = img
-                    dom.music.playerBG.src = img
-                    dom.music.albumImg.src = img
-                }
+            if ( muse.meta.album != previousAlbum ) {
+                previousAlbum = muse.meta.album
+                let src = music.albums[ previousAlbum ].img
+                dom.music.playerBG.src = src
+                dom.music.albumImg.src = src
             }
-            async function fadeOut() {
-                let opacity = 1
-                let i1 = setInterval( () => {
-                    opacity -= .01
-                    console.log( opacity)
-                    if ( opacity <= 0 ) {
-                        clearInterval( i1 )
-                        return true
-                    }
-                    player.style.opacity = opacity
-                }, 1 )
-            }
-            async function fadeIn() {
-                let opacity = 0
-                let i2 = setInterval( () => {
-                    opacity += .01
-                    player.style.opacity = opacity
-                    console.log( opacity)
-                    if ( opacity >= 0 ) {
-                        clearInterval( i2 )
-                        return true
-                    }
-                }, 1 )
-            }
-            async function animation() {
-                let a = await fadeOut()
-                let b = await changeAlbum()
-                let c = await fadeIn()
-            }
-            changeAlbum()
-            
         }
 
-        amuse.addEventListener( 'skip', updateUI )
+        data.amuse.addEventListener( 'skip', updateUI )
 
         ////////////////////////////////////////////////////////
         // BEGIN the player
-        amuse.skipToIndex( 0 )
+        data.amuse.skipToIndex( 0 )
 
     } )
 }
 function eject() {
-
+    data.amuse.pause()
 }
 
 

@@ -1,8 +1,2 @@
 node_modules/
-dir node_modules
-dir dist 
 dist/
-src/assets/music/
-dir src/assets/music
-# Local Netlify folder
-.netlify

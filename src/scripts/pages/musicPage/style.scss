@@ -103,6 +103,7 @@
             &:active {
                 opacity: .8;
             }
+            cursor: pointer;
         }
 
         &--inner {
@@ -256,6 +257,8 @@
     }
 
     &__song {
+
+        cursor: pointer;
 
         &:active {
             opacity: .5;

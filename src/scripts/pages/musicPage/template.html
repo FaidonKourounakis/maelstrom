@@ -1,30 +1,72 @@
 <div id="music-page" class="music__page">
-    <div class="music__player-container">
+    <div class="music__player-container--ghost"></div>
 
-        <div id="music-options" class="music__options">
-            
-        </div>
+    <div  id="music-player" class="music__player-container">
 
-        <div id="music-album-img" class="music__album-img">
-
-            <img src="" alt="" id="album-img">
-
-        </div>
-
-        <div class="music__info">
-
+        <div class="music__background-img--container">
+                <img class="music__background-img" src="https://res.cloudinary.com/faidondev/image/upload/v1576324468/Maelstrom%20Assets/images/flamboyant_gevoelsfestijn-min_1_kwwxxx.jpg" id="music-player-background" alt="background cover" >
         </div>
         
-        <div  class="music__bar-container">
+        <div class="row" style="height: 100%;">
+                <div class="music__album--container">
 
-        </div>
-
-        <div class="music__controls">
+                        <img src="https://res.cloudinary.com/faidondev/image/upload/v1576324468/Maelstrom%20Assets/images/flamboyant_gevoelsfestijn-min_1_kwwxxx.jpg" alt="Album Image" id="album-img" class="music__album--img">
             
+                </div>
+            
+                <div class="music__player">
+                    <div class="music__info">
+                            <div id="music-title" class="music__info--title">
+                                {{song}}
+                            </div>
+                            <div id="music-album" class="music__info--album">
+                                {{album}}
+                            </div>
+                    </div>
+                        
+                    <div  class="music__bar">
+            
+                            <span id="music-current-time" class="music__bar--time music__bar--time--current">0:00</span>
+            
+                            <span id="music-bar-outer" class="music__bar--outer">
+                                <span id="music-bar-inner" class="music__bar--inner"></span>
+                            </span>
+            
+                            <span id="music-duration-time" class="music__bar--time music__bar--time--duration">-:--</span>
+            
+                    </div>
+            
+                    <div class="music__controls">
+                        <div id="music-previous" class="music__controls--previous">
+                            <i class="fad fa-backward"></i> 
+                        </div>
+                        <div id="music-main-btn" class="music__controls--main paused">                
+                            <div class="music__controls--main--play">
+                                    <i class="fas fa-play"></i>
+                            </div>
+                            <div class="music__controls--main--pause">
+                                <i class="fas fa-pause"></i>
+                            </div>
+                        </div>
+                        <div id="music-next" class="music__controls--next">
+                            <i class="fad fa-forward"></i>
+                        </div>
+                    </div>
+            
+                    <div class="music__download ">
+                        <i class="fad fa-arrow-to-bottom"></i>
+                    </div>
+                </div>
         </div>
     </div>
     
-    <div id="music-list" class="music__list-container">
+    <div class="row music__list-container">
         
+        <div id="music-list" class="music__list">
+
+        </div>
+    </div>
+    
+    <div class="placeholder--footer">
     </div>
 </div>

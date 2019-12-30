@@ -8,12 +8,14 @@ $color-grey-dark: rgb(58, 58, 58);
 
 
 // z-indexes
-$z-header: 2;
-$z-menu: 4;
-$z-burger: 5;
-$z-link: 100;
-$z-link-bg: 50;
+$z-header: 80;
+$z-menu: 20;
+$z-burger: 30;
+$z-link: 30;
+$z-link-bg: 25;
 $z-section: 3;
+$z-player-container : 10;
+$z-player-background: -5;
 
 // parallax:
 

@@ -2,18 +2,20 @@
 import template from './template.html'
 import { state, dom, fn } from '../../store'
 const id = 'home-page'
+import footers from '../../layout/footer/footer'
 import Muse from '../../player/amuse'
 
 let data = {}
 
 function setupPlayer() {
+    footers()
 
     state.getMusicData().then( music => {
 
-        const albumNames = Object.keys( music.albums )
-        const album = albumNames[ Math.floor( Math.random() * albumNames.length ) ]
-        const songIds = Object.keys( music.albums[ album ] )
-        const song = music.albums[ album ][ songIds[ Math.floor( Math.random() * songIds.length ) ] ]
+        music = music.music
+        const songIds = Object.keys( music.songs )
+        const randSongId = songIds[ Math.floor( Math.random() * songIds.length ) ]
+        const song = music.songs[ randSongId ]
 
         
         data.player = new Muse( song.src, 'homePlayer' )
@@ -43,7 +45,7 @@ function setupPlayer() {
             dom.home.player.classList.add( 'paused' )
         })
 
-        dom.home.album.innerText = album
+        dom.home.album.innerText = song.album
         dom.home.track.innerText = song.title
     
         

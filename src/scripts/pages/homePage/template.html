@@ -1,125 +1,135 @@
-<div id="home-page" class="page home">
-    <div class="section section--light">
-        <div class="row">
-            <h1 class="page-title page-title--dark">
-                Home
-            </h1>
-            <div id="home-player" class="home__player paused">
-                <h2 class="home__track">
-                    <span class="home__track--intro">
-                        now playing
-                    </span>
-                    <span id="home-track" class="home__track--name">
-                        Song name
-                    </span>
-                </h2>
-                <h3 id="home-album" class="home__album">
-                    Album Name
-                </h3>
-                <div id="home-btn" class="home__btn--container">
-                    <div class="home__btn home__btn--play">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="home__btn home__btn--pause">
-                        <i class="fas fa-pause"></i>
-                    </div>
-                </div>
-                <div class="home__progress">
-                    <span id="home-time" class="home__time">
-                        0:00 / -:--
-                    </span>
-                    <span id="home-bar"  class="home__bar">
-                        <span class="home__bar--inner" id="home-inner-bar">
-                            <div id="home-slider" class="home__bar--slider"></div>
+<div class="prlx__container" id="home-page">
+        
+    <div  class="page home">
+        <div class="section section--light">
+            <div class="row">
+                <h1 class="page-title page-title--dark">
+                    Home
+                </h1>
+                <div id="home-player" class="home__player paused">
+                    <h2 class="home__track">
+                        <span class="home__track--intro">
+                            now playing
                         </span>
-                        
-                    </span>
+                        <span id="home-track" class="home__track--name">
+                            Song name
+                        </span>
+                    </h2>
+                    <h3 id="home-album" class="home__album">
+                        Album Name
+                    </h3>
+                    <div id="home-btn" class="home__btn--container">
+                        <div class="home__btn home__btn--play">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="home__btn home__btn--pause">
+                            <i class="fas fa-pause"></i>
+                        </div>
+                    </div>
+                    <div class="home__progress">
+                        <span id="home-time" class="home__time">
+                            0:00 / -:--
+                        </span>
+                        <span id="home-bar"  class="home__bar">
+                            <span class="home__bar--inner" id="home-inner-bar">
+                                <div id="home-slider" class="home__bar--slider"></div>
+                            </span>
+                            
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="prlx__wrapper prlx__-5">
-        <img src="https://res.cloudinary.com/faidondev/image/upload/v1575816596/Maelstrom%20Assets/images/Maelstrom_promotie_4_aasfbp.jpg" alt="">    
-    </div>
-    <div class="row section section--dark ">
-        <h1 class="page-title page-title--light">
-            . . . This Website
-        </h1>
-        <p style="text-align: center;" class="paragraph">
-            <br>
-                <ul class="paragraph feature__container"style="list-style: none;">
-                
+        <div class="prlx__wrapper prlx__-5">
+            <img src="https://res.cloudinary.com/faidondev/image/upload/v1575816596/Maelstrom%20Assets/images/Maelstrom_promotie_4_aasfbp.jpg" alt="">    
+        </div>
+        <div class="row section section--dark ">
+            <h1 class="page-title page-title--light">
+                . . . This Website
+            </h1>
+            <p style="text-align: center;" class="paragraph">
+                <br>
+                    <ul class="paragraph feature__container"style="list-style: none;">
                     
-                    <li class="feature__card">
-                        <div class="feature__icon-container">
-                            <i class="fal fa-guitar"></i>
-                        </div>
-                        <div class="feature__text-container">
-                            <h3>Welcome</h3>
-                            to the official website of M&aelig;lstr&oslash;m! 
-                        </div>
-                    </li>
+                        
+                        <li class="feature__card">
+                            <div class="feature__icon-container">
+                                <i class="fal fa-guitar"></i>
+                            </div>
+                            <div class="feature__text-container">
+                                <h3>Welcome</h3>
+                                to the official website of M&aelig;lstr&oslash;m! 
+                            </div>
+                        </li>
+    
+                        <a route="/">
+                            <li class="feature__card">
+                                <div class="feature__icon-container">
+                                    <i class="fal fa-music"></i>
+                                </div>
+                                <div class="feature__text-container">
+                                    <h3>Listen</h3>to a song, selected just for you buy the Random Number Generator (on the home page!) 
+                                </div>
+                                <button class="feature__btn">
+                                    To Home Page
+                                </button>
+                            </li>
+                        </a>
+        
+                        <a route="/music">
+                            <li class="feature__card">
+                            <div class="feature__icon-container">
+                                <i class="fal fa-compact-disc"></i>
+                            </div>
+                            <div class="feature__text-container">
+                                <h3>Discover</h3>all their songs in the music page! What are you waiting for? Open that menu and start downloading your favorite ones! 
+                            </div>
+                            <button class="feature__btn">
+                                To Music Page
+                            </button>
+                        </li></a>
+        
+                        <a route="/about">
+                            <li class="feature__card">
+                                <div class="feature__icon-container">
+                                    <i class="fal fa-users"></i>
+                                </div>
+                                <div class="feature__text-container">
+                                    <h3>Learn</h3>
+                                    about where the band members ended up after their -not so successful- attempt at becoming the next Beatles in the About section!
+                                </div>
+                                <button class="feature__btn">
+                                    To About Page
+                                </button>
+                            </li>
+                        </a>
+        
+                        <a route="/comeback">
+                            <li class="feature__card">
+                                <div class="feature__icon-container">
+                                    <i class="fad fa-angle-double-left"></i>
+                                </div>
+                                <div class="feature__text-container">
+                                    <h3>Going Back</h3>
+                                    in time! Yes it's true! Maelstrom is making a huge comeback to celebrate on if it's members 50th birthday!<br>Learn more in the Comeback page...
+                                </div>
+                                <button class="feature__btn">
+                                    To Comeback Page
+                                </button>
+                            </li>
+                        </a>
+        
+                    </ul>
+            </p>
+        </div>
+        <div class="prlx__wrapper prlx__-5">
+            <img class="bw" src="https://res.cloudinary.com/faidondev/image/upload/v1575816577/Maelstrom%20Assets/images/Maelstrom_bijJan_02_mfpubq.jpg" alt="">    
+        </div>
+    </div>
 
-                    <a route="/">
-                        <li class="feature__card">
-                            <div class="feature__icon-container">
-                                <i class="fal fa-music"></i>
-                            </div>
-                            <div class="feature__text-container">
-                                <h3>Listen</h3>to a song, selected just for you buy the Random Number Generator (on the home page!) 
-                            </div>
-                            <button class="feature__btn">
-                                To Home Page
-                            </button>
-                        </li>
-                    </a>
-    
-                    <a route="/music">
-                        <li class="feature__card">
-                        <div class="feature__icon-container">
-                            <i class="fal fa-compact-disc"></i>
-                        </div>
-                        <div class="feature__text-container">
-                            <h3>Discover</h3>all their songs in the music page! What are you waiting for? Open that menu and start downloading your favorite ones! 
-                        </div>
-                        <button class="feature__btn">
-                            To Music Page
-                        </button>
-                    </li></a>
-    
-                    <a route="/about">
-                        <li class="feature__card">
-                            <div class="feature__icon-container">
-                                <i class="fal fa-users"></i>
-                            </div>
-                            <div class="feature__text-container">
-                                <h3>Learn</h3>about where the band members ended up after their -not so succesful- attempt at becoming the next Beetles in the About section!
-                            </div>
-                            <button class="feature__btn">
-                                To About Page
-                            </button>
-                        </li>
-                    </a>
-    
-                    <a route="/comeback">
-                        <li class="feature__card">
-                            <div class="feature__icon-container">
-                                <i class="fad fa-angle-double-left"></i>
-                            </div>
-                            <div class="feature__text-container">
-                                <h3>Going Back</h3>
-                                in time! Yes it's true! Maelstrom is making a huge comeback to celebrate on if it's members 50th birthday!<br>Learn more in the Comeback page...
-                            </div>
-                            <button class="feature__btn">
-                                To Comeback Page
-                            </button>
-                        </li>
-                    </a>
-    
-                </ul>
-        </p>
+    <div class="placeholder--footer">
     </div>
-    <div class="prlx__wrapper prlx__-5">
-        <img class="bw" src="https://res.cloudinary.com/faidondev/image/upload/v1575816577/Maelstrom%20Assets/images/Maelstrom_bijJan_02_mfpubq.jpg" alt="">    
-    </div>
+
 </div>
+
+

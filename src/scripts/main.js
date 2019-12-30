@@ -10,6 +10,9 @@ import router from './router/router'
 import header from './layout/header/header'
 import footer from './layout/footer/footer'
 
+//set up the player
+import player from './player/player'
+
 //testing: 
 import './test'
 

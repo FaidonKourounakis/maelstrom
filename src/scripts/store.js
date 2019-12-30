@@ -6,7 +6,7 @@ export let state = {
     
     showMenu: false,
 
-    musicDataLink: 'https://res.cloudinary.com/faidondev/raw/upload/v1575983000/Maelstrom%20Assets/data/music_ad2vm8.json',
+    musicDataLink: 'https://res.cloudinary.com/faidondev/raw/upload/v1577298809/Maelstrom%20Assets/data/music_qeq1du.json',
     
     async getMusicData() {
         if ( !this.musicData ) {
@@ -30,7 +30,7 @@ export let dom = {
     menu: document.querySelector('.menu'),
     linksList: document.querySelector( '.menu__list' ),
     routerView: document.getElementById( 'router-view' ),
-    placeholderFooter: document . getElementById( 'placeholder--footer' ),
+    footers: () => Array.from( document.getElementsByClassName( 'placeholder--footer' ) ),
 }
 
 export let fn = {

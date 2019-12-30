@@ -27,7 +27,7 @@
     }
 }
 
-@mixin whiteGradientSlide( $bg-color, $slide-color: white, $duration: .3s ) {
+@mixin whiteGradientSlide( $bg-color, $slide-color: white, $duration: .3s, $on: hover ) {
     transition: background-position $duration linear;
         background-image: 
         linear-gradient( 
@@ -41,7 +41,16 @@
         background-clip: text;
         color: transparent;
         -webkit-background-clip: text;
+    @if (on == hover ) {
         &:hover {
             background-position: 0%;
         }
+    } 
+    @if ( on == active ) {
+        &:active {
+            background-position: 0%;
+        }
+
+    }
+    
 }

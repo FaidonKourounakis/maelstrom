@@ -1,3 +1,21 @@
 .bw {
     filter: grayscale(70%);
 }
+
+.btn--active-white {
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        z-index: -.5;
+        background-color: rgba(190, 190, 190, 0.397);
+        opacity: 0;
+        transition: opacity .2s;
+        cursor: pointer;
+    }
+    &:active::after {
+        opacity: 1;
+    }
+}

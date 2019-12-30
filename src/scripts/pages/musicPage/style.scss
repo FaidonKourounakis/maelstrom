@@ -1,20 +1,386 @@
+
+
 .music {
 
-    &__page {
-        background-color: black;
-        background-image: 
+    &__player-container {
+        z-index: $z-player-container;
+        position: fixed;
+        top: 6.8rem; left: 0;
+        overflow: hidden;
         
-            linear-gradient( 110deg, rgba(138, 138, 138, 0.548) 0%, rgba(0, 0, 0, 0.678) 100%),    
-            url('https://res.cloudinary.com/faidondev/image/upload/v1575816591/Maelstrom%20Assets/images/Maelstrom_Hebbes_11_cds_msmhbb.jpg');
-        background-size: cover;
-        height: 90vh;
-    }
+        box-shadow: 0 1rem 3rem black;
 
+        &,&--ghost {
+            width: 100vw;
+            height: 30rem;
+            @include respond(xs, xxs) {
+                height: 20rem;
+            }
+        }
+    }
+    &__background-img {
+        display: block;
+        position: absolute;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        width: 100%;
+        
+        z-index: $z-player-background;
+        filter: blur( .6rem ) brightness( 50% );
+
+
+        &--container {
+            position: absolute;
+            z-index: $z-player-background;
+            top: -.5rem;
+            right: -.5rem;
+            width: calc(100vw + 1rem);
+            height: calc(100% + 1rem);
+            background-color: black;
+
+        }
+    }
+    &__album {
+        &--container {
+            // display: inline-block;
+            margin: 4rem;
+            float: left;
+            @include respond( xs, xxs) {
+                display: none;
+            }
+        }
+        &--img {
+            width: 22rem;
+            height: 22rem;
+            border-radius: 1rem;
+        }
+    }
     &__player {
+        display: inline-block;
+        padding: 1rem;
+        color: white;
+        width: calc( 100% - 30rem);
+        height: 100%;
+        padding: 4rem;
+        @include respond( xs, xxs ) {
+            width: 100%;
+            padding: 2rem;
+        }
+        text-align: center;
+    }
+    &__info {
+
+        &--title {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 4rem;
+            line-height: 1.2;
+        }
+        &--album {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 1.7rem;
+            text-transform: uppercase;
+            opacity: .5;
+        }
+    }
+    &__bar{
+        
+        position: relative;
+        margin: .5rem;
+
+        &--outer {
+            display: inline-block;
+            width: calc( 100% - 9rem );
+            height: 1rem;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: .5rem;
+            overflow: hidden;
+            transition: all .1s;
+            &:active {
+                opacity: .8;
+            }
+        }
+
+        &--inner {
+            display: inline-block;
+            height: 100%;
+            width: 50%;
+            border-radius: .5rem;
+            background-color: white;
+            margin: 0;
+            float: left;
+        }
+
+        &--time {
+            display: inline-block;
+            font-size: 1.3rem;
+            width: 4rem;
+            text-align: center;
+            line-height: 1.1;
+
+            &--current {
+                float: left;
+            }
+
+            &--duration {
+                float: right;
+            }
+        }
 
     }
+    &__controls {   
+        height: 40%;
+        margin: 2%;
+        $main-btn-margin: 2.5rem;
+        $main-btn-width: 4.5rem;
 
-    &__songs {
-        
+
+        font-size: 3rem;
+        position: relative;
+        text-align: center;
+        &--previous {
+            top: 50%;
+            display: inline-block;
+            position: absolute;
+            right: 50%;
+            transform: translateY( -50% ) translateX( - ( $main-btn-width / 2 ) - $main-btn-margin );
+            cursor: pointer;
+
+            transition: all .1s;
+            &:active {
+                opacity: .5;
+            }
+        }
+        &--next {
+            cursor: pointer;
+            top: 50%;
+            display: inline-block;
+            position: absolute;
+            left: 50%;
+            transform: translateY( -50% ) translateX( ( $main-btn-width / 2 ) + $main-btn-margin );
+
+            
+            transition: all .1s;
+            &:active {
+                opacity: .5;
+            }
+        }
+        &--main {
+            cursor: pointer;
+            display: block;
+            width: $main-btn-width;
+            height: $main-btn-width;
+            font-size: $main-btn-width;
+            z-index: 100;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY( -50% ) translateX( -50% );
+            line-height: 1;
+            text-align: center;
+
+            perspective: 200px;
+            transform-style: initial;
+            &--play {
+                transition: all .3s;
+                position: absolute;
+                margin: auto;
+                height: 100%;
+                width: 100%;
+                backface-visibility: hidden; 
+                transform: rotateY( 90deg );
+                transform-origin: center center (-$main-btn-width / 2);
+            }
+            &--pause {
+                transition: all .3s;
+                position: absolute;
+                margin: auto;
+                height: 100%;
+                width: 100%;
+                backface-visibility: hidden; 
+                transform: rotateY( 0deg );
+                transform-origin: center center ( -$main-btn-width / 2);
+            }
+            &.paused > & {
+                &--play {
+                    transform: rotateY( 0deg );
+                }
+                &--pause {
+                    transform: rotateY(-90deg);
+                }
+            }
+        }
+    }
+    &__download {
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: all .1s;
+
+        &:active {
+            opacity: .5;
+        }
+        // @include whiteGradientSlide( white, rgba( white, .4 ), .2s, active);
+    }
+
+    &__list {
+
+        &-container {
+            background-color: black;
+            // &::after {
+            //     content: "";
+            //     position: absolute;
+            //     height: 100%;
+            //     width: 100%;
+            //     top: 0;
+            //     left: 0;
+            //     z-index: -1;
+            //     background-image: url('https://res.cloudinary.com/faidondev/image/upload/v1575816591/Maelstrom%20Assets/images/Maelstrom_Hebbes_11_cds_msmhbb.jpg');
+            //     background-size: 100% auto;
+            //     background-position: center;
+            //     filter: brightness(40%) ;
+            //     background-color: black;
+                
+            // }
+        }
+
+        color: white;
+        padding: 1rem 0 1rem 0;
+    }
+
+    &__song {
+
+        &:active {
+            opacity: .5;
+        }
+
+        &:not(:first-child) {
+            border-top: 1px solid rgba(255, 255, 255, 0.466);
+        }
+        box-sizing: border-box;
+        height: 6rem;
+        padding: .5rem 1rem .5rem 1rem;
+
+        &.selected {
+
+            & + * {
+                border-top: none;
+            }
+            
+            border-radius: .3rem;
+            background-color: white;
+            color: black;
+        }
+
+        &__icon {
+            display: inline-block;
+            padding: 1rem; 
+            
+            float: left;
+
+            &--paused {
+                display: inline-block;
+                width: 3rem; height: 3rem;
+                font-size: 3rem;
+                line-height: 1;
+            }
+
+            &--playing {
+                display: none;
+                width: 3rem; height: 3rem;
+                transform: rotateZ( 180deg );
+
+                .dancing-bar {
+                    background-color: black;
+                    display: inline-block;
+                    float: left;
+                    height: 100%;
+                    width: 20%;
+                    border-radius: .2rem;
+
+                    @keyframes bar-dance {
+                        0% { height: 30%; }
+                        25% { height: 100%; }
+                        50% { height: 50%; }
+                        75% { height: 100%; }
+                        100% { height: 30%; }
+                    }
+
+                    &--1 {
+                        animation: bar-dance 2.5s linear 0s infinite;
+                    }
+                    &--2 {
+                        margin: 0 15% 0 15%;
+                        animation: bar-dance 1.8s linear 0s infinite;
+                    }
+                    &--3 {
+                        animation: bar-dance 3s linear 0s infinite;
+                    }
+                }
+
+            }
+
+        }
+
+        &.selected &__icon &__icon--paused {
+            display: none;
+        }
+        &.selected &__icon &__icon--playing {
+            display: inline-block;
+        }
+
+        &__info {
+            display: inline-block;
+            height: 100%;
+            width: calc(100% - 7.5rem);
+
+            &--title {
+                display: block;
+                font-size: 2.2rem;
+                height: 3.5rem;
+                
+                max-width: 100%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+
+                line-height: 1;
+                padding: 1rem 0 .3rem 0;
+            }
+
+            &--album {
+                display: block;
+                font-size: 1rem;
+                text-transform: uppercase;
+                opacity: .5;
+                line-height: 1;
+                box-sizing: border-box;
+                height: 1.5rem;
+                padding-bottom: .5rem;
+                
+                max-width: 100%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+
+        }
+
+        &__download {
+            display: inline-block;
+            height: 5rem; 
+            font-size: 2rem;
+            line-height: 1;
+            padding-top: 1.5rem;
+            float: right;
+        }
+
     }
 }

@@ -1,3 +1,4 @@
+
 function onmousehold( el, fn, t = 100 ) {
 
     let eventCopy, holdX, holdY, pressed = false
@@ -15,10 +16,14 @@ function onmousehold( el, fn, t = 100 ) {
     function insertListeners() {
         window.addEventListener( 'touchmove', updateTouch )
         window.addEventListener( 'mousemove', updateMouse )
+        window.addEventListener( 'touchend', stopUpdate )
+        window.addEventListener( 'mouseup', stopUpdate )
     }
     function ejectListeners() {
         window.removeEventListener( 'touchmove', updateTouch ) 
-        window.removeEventListener( 'mousemove', updateMouse ) 
+        window.removeEventListener( 'mousemove', updateMouse )
+        window.removeEventListener( 'touchend', stopUpdate ) 
+        window.removeEventListener( 'mouseup', stopUpdate ) 
     }
     function startUpdate() {
         insertListeners()
@@ -34,6 +39,7 @@ function onmousehold( el, fn, t = 100 ) {
         pressed = false
     }
     function mousedown( e ) {
+        // console.log('mousedown')
         pressed = true
         updateMouse( e )
         startUpdate()
@@ -44,107 +50,130 @@ function onmousehold( el, fn, t = 100 ) {
         startUpdate()
     }
     el.addEventListener( 'touchstart', touchstart ) 
-    el.addEventListener( 'mousemove', mousedown )
-    window.addEventListener( 'touchend', stopUpdate ) 
-    window.addEventListener( 'mouseup', stopUpdate )
+    el.addEventListener( 'mousedown', mousedown )
+
 }
 
 class Amuse {
 
     constructor( src, id, meta, load ) {
-        if ( !src && !id ) {
-            this._currentMuseIndex = false
-        } else {
+        if ( src && id ) {
             this.addMuse( src, id, meta, load)
-            this._currentMuseIndex = 0
         }
     }
-
     /************************************
      * PUBLIC METHODS
      */
 
-    load( id = this.currentMuse.id ) {
+    async load( id ) {
+        if ( id == undefined ) {
+            if ( this.currentMuse ) id = this.currentMuse.id 
+            else id = this._muses[ 0 ].id
+        }
         if ( !this.getMuseById( id ) ) {
             throw new Error( 'No muse exists with the id passed to load()' )
         } else {
+
             let muse = this._muses.find( muse => muse.id === id )
             if ( !muse.audio ) {
+
                 muse.audio = new Audio( muse.src ) 
+
                 for ( event in this._audioEventListeners ) {
                     muse.audio.addEventListener( event, this._audioEventListeners[ event ] )
                 }
-                // let i = setInterval( () => {
-                //     if ( this.loaded ) {
-                //         this._on( 'load' )
-                //         this._updateElements()
-                //         clearInterval( i )
-                //     }
-                // }, 50)
-                
-                this._on( 'load' )
-                this._updateElements()
-            }
+
+                let int = setInterval( () => {
+
+                    if ( muse.audio.readyState >= 1 ) {
+                        this._on( 'load' )
+                        this._updateElements()
+                        clearInterval( int )
+                        return true
+                    }
+
+                }, 5 )
+            } else return true
+
         }
     }
 
-    play() {
+    async play() {
         // the user's event listener is called from this._audioEventListeners
-        this.load()
-        this.currentMuse.audio.play()
-        this._updateElements()
+        this.load().then( () => {
+            this.currentMuse.audio.play()
+            this._updateElements()
+            return true
+        })
     }
     
-    pause() {
+    async pause() {
         // the user's event listener is called from this._audioEventListeners
-        this.load()
-        this.currentMuse.audio.pause()
-        this._updateElements()
+        this.load().then( () => {
+            this.currentMuse.audio.pause()
+            this._updateElements() 
+            return true
+        })
     }
 
-    stop() {
-        this.pause()
-        this.currentSeconds = 0
-        this._on( 'stop' )
-        this._updateElements()
+    async stop() {
+        this.pause().then( () => {
+            this.currentSeconds = 0
+            this._on( 'stop' )
+            this._updateElements()
+            return true
+        })
     }
 
-    next() {
+    async next() {
         //if this is the last one return false
         if ( this._currentMuseIndex + 1 >= this._muses.length ) {
             return false
         } else {
-            if ( this.rememberTime ) this.pause() 
-            else this.stop()
-            this._currentMuseIndex ++ 
-            this.play()
-            return true
+            const after = async () => {
+                this._currentMuseIndex ++ 
+                this.play().then( () => {
+                    this._on( 'next' )
+                    this._on( 'skip' )
+                    return true
+                })
+            }
+
+            if ( this.rememberTime ) this.pause().then( after )
+            else this.stop().then( after )
         }
     }
 
-    previous() {
+    async previous() {
         if ( this._currentMuseIndex === 0 ) {
             return false
         } else {
-            if ( this.rememberTime ) this.pause()
-            else this.stop()
-            this._currentMuseIndex --
-            this.play()
-            return true
+            const after = async () => {
+                this._currentMuseIndex --
+                this.play().then( () => {
+                    this._on( 'previous' )
+                    this._on( 'skip' )
+                    return true
+                })
+            }
+
+            if ( this.rememberTime ) this.pause().then( after )
+            else this.stop().then( after )
         }
     }
 
-    skipToId( id ) {
+    async skipToId( id ) {
         if ( ! this._getMuseIndexById( id ) ) return false
-        else return this.skipToIndex( this._getmMuseIndexById( id ) )
+        else return await this.skipToIndex( this._getMuseIndexById( id ) )
     }
 
-    skipToIndex( i ) {
+    async skipToIndex( i ) {
         if ( i >= 0 && i < this._muses.length ) {
-            if ( this.rememberTime ) this.pause()
-            else this.stop()
+            if ( this.rememberTime ) await this.pause()
+            else await this.stop()
             this._currentMuseIndex = i
-            this.play()
+            await this.play()
+            this._on( 'skip' )
             return true
         } else return false
     }
@@ -161,13 +190,12 @@ class Amuse {
                 meta
             } )
             if ( load ) {
-                this.load( id )
-            }
-            this._updateElements()
+                this.load( id ).then( this._updateElements )
+            } else this._updateElements()
         }
     }
     
-    removeMuseById( id )  {
+    async removeMuseById( id )  {
         const museIndexToRemove = this._getMuseIndexById( id )
         if ( museIndexToRemove === undefined ) throw new Error('Muse id doesnt exist, cannot remove the muse')
         function remove( amuse ) {
@@ -177,12 +205,13 @@ class Amuse {
 
             console.log( '1 ')
 
-            this.stop()
-            if( this.next() ) {
+            await this.stop()
+
+            if( await this.next() ) {
                 remove(this)
                 this._currentMuseIndex --
             } else {
-                this.previous()
+                await this.previous()
                 remove(this)
             }
         } else if ( museIndexToRemove > this._currentMuseIndex ) {
@@ -193,22 +222,22 @@ class Amuse {
         }
     }
 
-    empty() {
-        this.stop()
+    async empty() {
+        await this.stop()
         this._currentMuseIndex = 0
         this._muses = []
         this._updateElements()
     }
 
-    reset() {
-        this.empty()
+    async reset() {
+        await this.empty()
         this.autoPlay = false
         this.rememberTime = true
         this._eventListeners.forEach( val => val = [] )
         this._elements.forEach( val => val = [] )
     }
 
-    addSeekBar( outer, inner ) {
+    addSeekBar( outer, inner, t = 50 ) {
         
         if ( !inner || !outer ) throw new Error('No elements to the .addSeekBar() method')
         else {
@@ -223,7 +252,8 @@ class Amuse {
                     this._updateElements()
                 }
 
-            }, 50)
+                this._on( 'seek' )
+            }, t )
         }
     }
 
@@ -259,8 +289,9 @@ class Amuse {
     set currentSeconds( s ) {
         if ( s > this.duration || s < 0 ) throw new Error( 'Can\'t seek to time out of the muse\'s range.' )
         else {
-            this.load()
-            this.currentMuse.audio.currentTime = s
+            this.load().then( () => {
+                this.currentMuse.audio.currentTime = s
+            })
         }
     }
 
@@ -276,7 +307,11 @@ class Amuse {
      */
 
     get loaded() {
-        return Boolean( this.currentMuse.audio ) 
+        return this.currentMuse 
+            ? this.currentMuse.audio 
+                ? true 
+                : false
+            :false
     }
 
     get playing() {
@@ -290,9 +325,11 @@ class Amuse {
     }
 
     get duration() {
-        this.load()
-        const dur = this.currentMuse.audio.duration
-        return !isNaN( dur ) ? dur : 0
+        if ( this.loaded ) {
+            
+            let dur = this.currentMuse.audio.duration
+            return !isNaN( dur ) ? dur : 0
+        } else return 0
     }
 
     get currentSeconds() {
@@ -305,7 +342,9 @@ class Amuse {
 
     get currentMuse() { 
         if ( this._muses.length === 0 ) return false
-        else return this._muses[ this._currentMuseIndex ]
+        else {
+            return this._muses[ this._currentMuseIndex ]
+        }
     }
 
 
@@ -353,7 +392,13 @@ class Amuse {
         durationTime: [],
         completeTime: [],
         bar: [],
-        title: []
+        // to implement:
+        title: [],
+        nextBtn: [],
+        previousBtn: [],
+        playBtn: [],
+        album: [],
+        title: [],
     }
 
     get _museIds() {
@@ -378,7 +423,7 @@ class Amuse {
                 this._on( 'error' , this)
             },
             ended: e => {
-                if ( autoPlay ) {
+                if ( this.autoPlay ) {
                     if ( ! this.next() ) {
                         this.skipToIndex( 0 )
                     }
@@ -388,8 +433,6 @@ class Amuse {
             }
         }
     }
-
-    
 
     _updateElements() {
         //update seekbar: 

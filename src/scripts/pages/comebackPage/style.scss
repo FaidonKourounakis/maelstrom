@@ -1,0 +1,22 @@
+@keyframes wid {
+    0% { width: 100%; }
+    50% { width: 0%; }
+    100% { width: 100%; }
+}
+.development {
+    text-align: center;
+    height: 100vh;
+    padding-top: 20vh;
+    background-image: linear-gradient( to bottom right, rgba(black, .5), rgba(black, 1), rgba(black, .3));
+    color: white;
+    font-size: 3rem;
+    &__title {
+        font-size: 5rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        height: 8rem;
+        margin: auto;
+        animation: wid 5s infinite;
+    }
+}

@@ -1,30 +1,37 @@
-# The website
 
-****
 
-### Description
+# Website Description
 A small SPA for my father's band where people can discover them, listen to their music, download songs/albums, view pictures.
+- ### Home Page: 
+    Random song player, responsive cards with the site's description.
+- ### Music Page: 
+    A full music player with all the band's songs loaded lazily, with a great UI!
+- ### About Page: 
+    Parallaxed images and paragraphs about the band
+- ### Comeback Page: 
+    
 
-****
 
-### Features / Technologies
+
+
+## Features / Technologies
 I built it from scratch: 
 - In vanilla.js (pure javascript)
 
-- No UI framework. Just my own HTML and SASS
+- No UI framework. Just my own HTML SASS and vanilla JS
 
-- Setup webpack from scratch ( compiling sass, collecting js html, hashing, copying assets, minifying) 
+- Setup webpack from scratch ( compiling sass, collecting js html, hashing, copying assets, minifying, pollyfying ES6 JS ) 
 
 - Hosted on custom domain
 
-- Created my own router for a small but Single-Page-App ( read documention in ./src/scripts/router/
+- Created my own router for a small Single-Page-App ( read documention in ./src/scripts/router/
 router.js)
 
-- Wrote a very perfomant CSS-only parallax effect ( it took me too much time ) 
+- Wrote a very perfomant CSS-only parallax effect ( took me too much time ) 
 
-- Created a pure js audio library: Amuse.js (and used it)
+- Created a pure js audio-wrapper library: Amuse.js (and used it)
 
-- Lazy loaded images and songs
+- Lazy loaded images and songs of different pages ( thanks to the router )
 
 **** 
 
@@ -55,8 +62,8 @@ router.js)
 
 ****
 
-##### Author: 
+### Author: 
 Faidon C. Kourounakis
-##### Portofolio: 
+### Portofolio: 
 [Website](www.faidon.kourounakis.com)
 

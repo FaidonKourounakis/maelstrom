@@ -24,12 +24,12 @@ import comebackPage from '../pages/comebackPage/comebackPage'
 const routes = [
     { 
         name: 'home',
-        url: '/music',
+        url: '/',
         component: homePage,
     },
     { 
         name: 'music',
-        url: '/',
+        url: '/music',
         component: musicPage,
     },
     { 

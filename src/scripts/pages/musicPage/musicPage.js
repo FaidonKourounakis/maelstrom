@@ -35,9 +35,9 @@ let data = {
                 </span>
             </span>
 
-            <span id="{{downloadId}}" class="music__song__download">
+            <a href="{{download}}" download="{{fileName}}" target="_blank" id="{{downloadId}}" class="music__song__download">
                 <i class="fad fa-arrow-to-bottom"></i>
-            </span>
+            </a>
 
         </div>
     `,
@@ -120,6 +120,8 @@ function insert() {
                 .replace( '{{title}}', song.title )
                 .replace( '{{album}}', song.album )
                 .replace( '{{songId}}', song.id )
+                .replace( '{{download}}' , song.download )
+                .replace( '{{fileName}}', `${song.title} - Maelstrom (${song.album})`)
                 .replace( '{{downloadId}}', 'download' + song.id )
             
             // add them to the songs-list:
@@ -128,12 +130,14 @@ function insert() {
         } )
         data.songs.forEach( song => {
             // add functionality to the list: 
-            console.log( document.getElementById( song.id ) )
             document.getElementById( song.id ).addEventListener( 'click', e => {
-                console.log( 'clicked')
                 data.amuse.skipToId( song.id )
             } )
-        })
+            document.getElementById( 'download' + song.id ).setAttribute( 'download', song.download )
+            document.getElementById( 'download' + song.id ).addEventListener( 'click', e => {
+                e.stopPropagation()
+            } ) 
+        } )
 
          
         let previousAlbum = ''

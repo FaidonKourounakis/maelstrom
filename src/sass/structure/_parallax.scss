@@ -50,7 +50,8 @@ $scale-prlx__-7: scale-factor( $translateZ-prlx__-7 ) ;
 .prlx {
 
     &__container {
-        height: 100vh;
+        height: calc( 100vh - #{$header-height} );
+        // height: 100vh;   
         overflow-x: hidden;
         overflow-y: scroll;
         perspective: $perspective;
@@ -64,11 +65,13 @@ $scale-prlx__-7: scale-factor( $translateZ-prlx__-7 ) ;
 
     &__wrapper {
         height: 100vh;
+        // height: calc( 100vh - #{$header-height} );
         width: 100%;
         overflow: hidden;
 
         > img {
             object-fit: cover;
+            // object-position: center;
             height: 100%;
             width: 100%;
         }

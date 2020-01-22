@@ -166,7 +166,14 @@
     &__time {
         font-size: 1.5rem;
     }
-
+    &__img {
+        &--1 {
+            object-position: center;
+        }
+        &--2 {
+            object-position: left top;
+        }
+    }
 }
 
 

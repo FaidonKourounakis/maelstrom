@@ -163,7 +163,7 @@ class Amuse {
     }
 
     async skipToId( id ) {
-        if ( ! this._getMuseIndexById( id ) ) return false
+        if  ( isNaN( this._getMuseIndexById( id ) ) ) return false
         else return await this.skipToIndex( this._getMuseIndexById( id ) )
     }
 

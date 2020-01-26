@@ -169,8 +169,9 @@ function insert() {
 
         ////////////////////////////////////////////////////////
         // BEGIN the player
-        data.amuse.skipToIndex( 0 )
-        // data.amuse.pause().then(e=>console.log('paused'))
+        data.amuse.skipToIndex( 0 ).then( () => {
+            data.amuse.pause()
+        })
     } )
 }
 function eject() {

@@ -170,7 +170,7 @@ function insert() {
         ////////////////////////////////////////////////////////
         // BEGIN the player
         data.amuse.skipToIndex( 0 )
-
+        // data.amuse.pause().then(e=>console.log('paused'))
     } )
 }
 function eject() {

@@ -6,7 +6,7 @@ export let state = {
     
     showMenu: false,
 
-    musicDataLink: 'https://res.cloudinary.com/faidondev/raw/upload/v1577298809/Maelstrom%20Assets/data/music_qeq1du.json',
+    musicDataLink: 'https://res.cloudinary.com/faidondev/raw/upload/v1580062670/Maelstrom%20Assets/data/music_oywjdd.json',
     
     async getMusicData() {
         if ( !this.musicData ) {
